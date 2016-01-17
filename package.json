@@ -19,8 +19,7 @@
     "url": "https://github.com/uhlryk/media-manager.git"
   },
   "scripts": {
-    "build": "./node_modules/webpack/bin/webpack.js",
-    "prebuild": "gulp copy-electron && gulp run-electron-prebuild"
+    "prebuild": "gulp prebuild"
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
@@ -35,6 +34,7 @@
     "electron-prebuilt": "^0.36.3",
     "gulp": "^3.9.0",
     "gulp-shell": "^0.5.1",
+    "run-sequence": "^1.1.5",
     "webpack": "^1.12.11",
     "webpack-stream": "^3.1.0"
   },

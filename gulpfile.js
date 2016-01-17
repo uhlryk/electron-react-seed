@@ -1,13 +1,14 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell')
 var webpack = require('webpack-stream');
+var runSequence = require('run-sequence');
 
 gulp.task('copy-electron', function() {
   return gulp.src(['./src/main.js', './src/index.html'])
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('compile', function() {
+gulp.task('compile-react', function() {
   return gulp.src('src/app/index.jsx')
     .pipe(webpack({
       module: {
@@ -24,10 +25,16 @@ gulp.task('compile', function() {
         ]
       },
       output: {
-        filename: 'app.js',
+        filename: 'bundle.js',
       },
     }))
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('run-electron-prebuild', shell.task('./node_modules/.bin/electron ./dist/main'));
+gulp.task('prebuild-electron', shell.task('./node_modules/.bin/electron ./dist/main'));
+
+gulp.task('prebuild', function(done) {
+  runSequence('copy-electron', 'compile-react', 'prebuild-electron', done);
+});
+
+
