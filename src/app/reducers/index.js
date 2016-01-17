@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
+function dummyReducer(state = '', action) {
+  return state
+}
 
+export default combineReducers({
+  dummyReducer
 });

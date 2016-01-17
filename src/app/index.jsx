@@ -3,12 +3,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import createStore from './stores/index.js';
 import reducer from './reducers/index.js';
+import App from './components/App.jsx';
 
 var store = createStore(reducer);
 
 render(
   <Provider store={store}>
-
+    <App />
   </Provider>,
   document.getElementById('root')
 );
