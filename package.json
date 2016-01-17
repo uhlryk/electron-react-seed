@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js",
-    "start": "./node_modules/.bin/electron ./dist/main"
+    "prebuild": "gulp copy-electron && gulp run-electron-prebuild"
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
@@ -29,6 +29,7 @@
   "devDependencies": {
     "electron-prebuilt": "^0.36.3",
     "gulp": "^3.9.0",
+    "gulp-shell": "^0.5.1",
     "webpack": "^1.12.11",
     "webpack-stream": "^3.1.0"
   },
