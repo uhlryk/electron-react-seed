@@ -19,7 +19,8 @@
     "url": "https://github.com/uhlryk/media-manager.git"
   },
   "scripts": {
-    "build": "./node_modules/webpack/bin/webpack.js"
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "start": "./node_modules/.bin/electron main"
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
