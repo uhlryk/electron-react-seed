@@ -20,14 +20,19 @@
   },
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js",
-    "start": "./node_modules/.bin/electron main"
+    "start": "./node_modules/.bin/electron ./dist/main"
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
     "url": "https://github.com/uhlryk/media-manager/issues"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.36.3"
+    "electron-prebuilt": "^0.36.3",
+    "gulp": "^3.9.0",
+    "webpack": "^1.12.11",
+    "webpack-stream": "^3.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2"
+  }
 }
