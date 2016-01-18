@@ -6,7 +6,10 @@ var runSequence = require('run-sequence');
 var path = require("path");
 var preprocess = require('gulp-preprocess');
 
-
+const WEBPACK_SERVER_HOST = 'http://localhost';
+const WEBPACK_SERVER_PORT = 3000;
+const STATIC_PATH = 'static';
+const BUNDLE_FILE = 'bundle.js';
 
 var webpackOptionsLoader = {
   test: /.jsx?$/,
@@ -23,20 +26,20 @@ var webpackOptions = {
     './src/app/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, './dist/static/'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, './dist/' + STATIC_PATH + '/'),
+    filename: BUNDLE_FILE
   },
 };
 
 gulp.task('copy-electron', function() {
   return gulp.src(['./src/main.js', './src/index.html'])
-    .pipe(preprocess({context: { BUNDLE_PATH: './static/bundle.js'}}))
+    .pipe(preprocess({context: { BUNDLE_PATH: './' + STATIC_PATH + '/' + BUNDLE_FILE}}))
     .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('copy-electron-hot', function() {
   return gulp.src(['./src/main.js', './src/index.html'])
-    .pipe(preprocess({context: { BUNDLE_PATH: 'http://localhost:3000/static/bundle.js'}}))
+    .pipe(preprocess({context: { BUNDLE_PATH: WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT +'/' + STATIC_PATH + '/' + BUNDLE_FILE}}))
     .pipe(gulp.dest('./dist/'))
 });
 
@@ -49,22 +52,22 @@ gulp.task('compile-react', function(done) {
 
 gulp.task('compile-react-hot', function(done) {
   webpackOptions.entry = [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?' + WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT,
     'webpack/hot/only-dev-server'
   ].concat(webpackOptions.entry);
   webpackOptions.plugins = [
     new webpack.HotModuleReplacementPlugin({})
   ];
   webpackOptionsLoader.loaders.unshift('react-hot');
-  webpackOptions.output.publicPath = '/static/';
+  webpackOptions.output.publicPath = WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT + '/' + STATIC_PATH + '/';
 
   new WebpackDevServer(webpack(webpackOptions), {
     hot: true,
-    publicPath: webpackOptions.output.publicPath
-  }).listen(3000, "localhost", function(err) {
+    publicPath: '/' + STATIC_PATH + '/'
+  }).listen(WEBPACK_SERVER_PORT, "localhost", function(err) {
     if(err) console.log(err);
     done();
-    console.log('webpack dev server listening at localhost:3000');
+    console.log('webpack dev server listening at ' + WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT);
   });
 });
 
