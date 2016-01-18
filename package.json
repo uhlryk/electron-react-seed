@@ -1,22 +1,25 @@
 {
-  "name": "media-manager",
+  "name": "electron-boilerplate",
   "version": "0.0.1",
-  "description": "Manage media files in selected directories. Add categories, tag, rates, descriptions",
+  "description": "Electron app boilerplate",
   "keywords": [
-    "media",
-    "categories",
-    "tags",
-    "manager",
-    "clips",
+    "electron",
+    "gulp",
     "react",
     "redux",
-    "electorn"
+    "hot-loader",
+    "es6",
+    "es7",
+    "babel",
+    "webpack",
+    "bootstrap4",
+    "sass"
   ],
   "main": "main.js",
-  "homepage": "https://github.com/uhlryk/media-manager",
+  "homepage": "https://github.com/uhlryk/my-electron-boilerplate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uhlryk/media-manager.git"
+    "url": "https://github.com/uhlryk/my-electron-boilerplate.git"
   },
   "scripts": {
     "prebuild": "gulp prebuild",
@@ -24,7 +27,7 @@
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
-    "url": "https://github.com/uhlryk/media-manager/issues"
+    "url": "https://github.com/uhlryk/my-electron-boilerplate/issues"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
