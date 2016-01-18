@@ -3,16 +3,15 @@ var shell = require('gulp-shell')
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var runSequence = require('run-sequence');
+var path = require("path");
+var preprocess = require('gulp-preprocess');
 
-gulp.task('copy-electron', function() {
-  return gulp.src(['./src/main.js', './src/index.html'])
-    .pipe(gulp.dest('dist/'));
-});
+
 
 var webpackOptionsLoader = {
   test: /.jsx?$/,
   loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
-  exclude: /node_modules/
+  include: path.join(__dirname, 'src/app')
 };
 var webpackOptions = {
   module: {
@@ -24,27 +23,44 @@ var webpackOptions = {
     './src/app/index.jsx'
   ],
   output: {
-    path: './dist/',
-    filename: 'bundle.js',
+    path: path.join(__dirname, './dist/static/'),
+    filename: 'bundle.js'
   },
 };
 
-gulp.task('compile-react', function() {
-  webpack(webpackOptions);
+gulp.task('copy-electron', function() {
+  return gulp.src(['./src/main.js', './src/index.html'])
+    .pipe(preprocess({context: { BUNDLE_PATH: './static/bundle.js'}}))
+    .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('compile-react-watch', function() {
+gulp.task('copy-electron-watch', function() {
+  return gulp.src(['./src/main.js', './src/index.html'])
+    .pipe(preprocess({context: { BUNDLE_PATH: 'http://localhost:3000/static/bundle.js'}}))
+    .pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('compile-react', function(done) {
+  webpack(webpackOptions, function(err, stats) {
+    if(err) console.log(err);
+    done();
+  });
+});
+
+gulp.task('compile-react-watch', function(done) {
   webpackOptions.entry = [
-    'webpack-dev-server/client?http://0.0.0.0:3000',
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server'
   ].concat(webpackOptions.entry);
   webpackOptions.plugins = [
     new webpack.HotModuleReplacementPlugin({})
   ];
   webpackOptionsLoader.loaders.unshift('react-hot');
+  webpackOptions.output.publicPath = '/static/';
 
   new WebpackDevServer(webpack(webpackOptions), {
-    hot: true
+    hot: true,
+    publicPath: webpackOptions.output.publicPath
   }).listen(3000, "localhost", function(err) {
     if(err) console.log(err);
     console.log('webpack dev server listening at localhost:3000');
@@ -58,6 +74,6 @@ gulp.task('prebuild', function(done) {
 });
 
 gulp.task('prebuild-watch', function(done) {
-  runSequence('copy-electron', 'compile-react-watch', 'prebuild-electron', done);
+  runSequence('copy-electron-watch', 'compile-react-watch', 'prebuild-electron', done);
 });
 
