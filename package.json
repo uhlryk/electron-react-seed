@@ -7,6 +7,7 @@
     "gulp",
     "react",
     "redux",
+    "jsx",
     "hot-loader",
     "es6",
     "es7",
@@ -23,7 +24,7 @@
   },
   "scripts": {
     "prebuild": "gulp prebuild",
-    "prebuild-watch": "gulp prebuild-watch"
+    "prebuild-hot": "gulp prebuild-hot"
   },
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {

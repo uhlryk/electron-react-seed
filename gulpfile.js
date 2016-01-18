@@ -34,7 +34,7 @@ gulp.task('copy-electron', function() {
     .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('copy-electron-watch', function() {
+gulp.task('copy-electron-hot', function() {
   return gulp.src(['./src/main.js', './src/index.html'])
     .pipe(preprocess({context: { BUNDLE_PATH: 'http://localhost:3000/static/bundle.js'}}))
     .pipe(gulp.dest('./dist/'))
@@ -47,7 +47,7 @@ gulp.task('compile-react', function(done) {
   });
 });
 
-gulp.task('compile-react-watch', function(done) {
+gulp.task('compile-react-hot', function(done) {
   webpackOptions.entry = [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server'
@@ -63,6 +63,7 @@ gulp.task('compile-react-watch', function(done) {
     publicPath: webpackOptions.output.publicPath
   }).listen(3000, "localhost", function(err) {
     if(err) console.log(err);
+    done();
     console.log('webpack dev server listening at localhost:3000');
   });
 });
@@ -73,7 +74,7 @@ gulp.task('prebuild', function(done) {
   runSequence('copy-electron', 'compile-react', 'prebuild-electron', done);
 });
 
-gulp.task('prebuild-watch', function(done) {
-  runSequence('copy-electron-watch', 'compile-react-watch', 'prebuild-electron', done);
+gulp.task('prebuild-hot', function(done) {
+  runSequence('copy-electron-hot', 'compile-react-hot', 'prebuild-electron', done);
 });
 
