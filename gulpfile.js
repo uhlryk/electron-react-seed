@@ -19,7 +19,15 @@ var webpackOptionsLoader = {
 var webpackOptions = {
   module: {
     loaders: [
-      webpackOptionsLoader
+      webpackOptionsLoader,
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      }
     ]
   },
   entry: [
@@ -29,6 +37,12 @@ var webpackOptions = {
     path: path.join(__dirname, './dist/' + STATIC_PATH + '/'),
     filename: BUNDLE_FILE
   },
+  sassLoader: {
+    includePaths: [
+      path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets/'),
+      path.resolve(__dirname, './node_modules/compass-mixins/lib/')
+    ]
+  }
 };
 
 gulp.task('copy-electron', function() {
