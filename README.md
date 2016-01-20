@@ -39,7 +39,8 @@ Compile/transpile/transform all source files and run electron with hot loader (u
   * webpack
   * ES6 & ES7
   * gulp
-  * bootstrap 4
+  * bootstrap 3
   * sass
+  * compass
 
 ## Licence:
