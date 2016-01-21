@@ -37,9 +37,9 @@ Compile/transpile/transform all source files and run electron with hot loader (u
 
     npm run prebuild-hot
 
-Compile/transpile/transform all source files and publish electron (available in ./release)
+Compile/transpile/transform all source files and release electron (available in ./release)
 
-    npm run publish
+    npm run release
     
 ## Structure:
 

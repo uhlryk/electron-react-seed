@@ -24,7 +24,7 @@
   },
   "scripts": {
     "prebuild": "gulp prebuild",
-    "publish": "gulp build",
+    "release": "gulp build",
     "prebuild-hot": "gulp prebuild-hot"
   },
   "electronVersion": "v0.36.4",
