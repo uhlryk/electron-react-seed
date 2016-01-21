@@ -6,16 +6,26 @@ How to use this code as new app:
 
 1 Clone this repository to new empty dir:
 
-`https://github.com/uhlryk/my-electron-boilerplate.git`
+    https://github.com/uhlryk/my-electron-boilerplate.git
 
 2 Create your app repository
 
-3 Change remote git url to your repository url
+3A Change remote git url to your repository url
 
-`git remote set-url origin https://github.com/yournick/your-app-url.git`
+    git remote set-url origin https://github.com/yournick/your-app-url.git
     
+3B If you don't want to have this boilerplate commit history you can remove it and create new own git init:
+
+    rm -rf .git
+    git init
+    git add .
+    git commit
+
 4 change app info in package.json 
 
+5 update npm modules
+
+    npm update
 
 ## Commands:
 
@@ -44,3 +54,5 @@ Compile/transpile/transform all source files and run electron with hot loader (u
   * compass
 
 ## Licence:
+
+MIT

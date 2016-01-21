@@ -16,7 +16,7 @@
     "bootstrap3",
     "sass"
   ],
-  "main": "main.js",
+  "main": "src/main.js",
   "homepage": "https://github.com/uhlryk/my-electron-boilerplate",
   "repository": {
     "type": "git",
