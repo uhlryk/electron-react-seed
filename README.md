@@ -26,7 +26,7 @@ How to use this code as new app:
 
 5 update npm modules
 
-    npm update
+    npm install
 
 ## Commands:
 
@@ -37,6 +37,10 @@ Compile/transpile/transform all source files and run electron with hot loader (u
 
     npm run prebuild-hot
 
+Compile/transpile/transform all source files and publish electron (available in ./release)
+
+    npm run publish
+    
 ## Structure:
 
 

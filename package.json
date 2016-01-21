@@ -24,10 +24,11 @@
   },
   "scripts": {
     "prebuild": "gulp prebuild",
-    "publish": "NODE_ENV=test gulp build",
+    "publish": "gulp build",
     "prebuild-hot": "gulp prebuild-hot"
   },
   "electronVersion": "v0.36.4",
+  "license": "MIT",
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
     "url": "https://github.com/uhlryk/my-electron-boilerplate/issues"
@@ -60,6 +61,7 @@
     "react": "^0.14.6",
     "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.6",
-    "react-redux": "^4.0.6"
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5"
   }
 }
