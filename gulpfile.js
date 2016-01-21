@@ -5,11 +5,15 @@ var WebpackDevServer = require('webpack-dev-server');
 var runSequence = require('run-sequence');
 var path = require("path");
 var preprocess = require('gulp-preprocess');
+var electron = require('gulp-electron');
+var packageJson = require('./package.json');
 
 const WEBPACK_SERVER_HOST = 'http://localhost';
 const WEBPACK_SERVER_PORT = 3000;
 const STATIC_PATH = 'static';
 const BUNDLE_FILE = 'bundle.js';
+const APP_NAME = packageJson.name;
+const APP_VERSION = packageJson.version;
 
 var webpackOptionsLoader = {
   test: /.jsx?$/,
@@ -46,14 +50,26 @@ var webpackOptions = {
 };
 
 gulp.task('copy-electron', function() {
-  return gulp.src(['./src/main.js', './src/index.html'])
-    .pipe(preprocess({context: { BUNDLE_PATH: './' + STATIC_PATH + '/' + BUNDLE_FILE}}))
+  return gulp.src(['./src/main.js', './src/index.html', './src/package.json'])
+    .pipe(preprocess({
+      context: {
+        BUNDLE_PATH: './' + STATIC_PATH + '/' + BUNDLE_FILE,
+        APP_NAME: APP_NAME,
+        APP_VERSION: APP_VERSION
+      }
+    }))
     .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('copy-electron-hot', function() {
-  return gulp.src(['./src/main.js', './src/index.html'])
-    .pipe(preprocess({context: { BUNDLE_PATH: WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT +'/' + STATIC_PATH + '/' + BUNDLE_FILE}}))
+  return gulp.src(['./src/main.js', './src/index.html', './src/package.json'])
+    .pipe(preprocess({
+      context: {
+        BUNDLE_PATH: WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT +'/' + STATIC_PATH + '/' + BUNDLE_FILE,
+        APP_NAME: APP_NAME,
+        APP_VERSION: APP_VERSION
+      }
+    }))
     .pipe(gulp.dest('./dist/'))
 });
 
@@ -95,3 +111,29 @@ gulp.task('prebuild-hot', function(done) {
   runSequence('copy-electron-hot', 'compile-react-hot', 'prebuild-electron', done);
 });
 
+gulp.task('build-electron', function() {
+  return gulp.src("")
+    .pipe(electron({
+      src: './dist',
+      packageJson: packageJson,
+      release: './release',
+      cache: './cache',
+      version: packageJson.electronVersion,
+      packaging: true,
+      platforms: ['darwin-x64'],
+      platformResources: {
+        darwin: {
+          CFBundleDisplayName: APP_NAME,
+          CFBundleIdentifier: APP_NAME,
+          CFBundleName: APP_NAME,
+          CFBundleVersion: APP_VERSION,
+          //icon: 'gulp-electron.icns'
+        }
+      }
+    }))
+    .pipe(gulp.dest(""));
+});
+
+gulp.task('build', function(done) {
+  runSequence('copy-electron', 'compile-react', 'build-electron', done);
+});

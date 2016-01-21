@@ -24,8 +24,10 @@
   },
   "scripts": {
     "prebuild": "gulp prebuild",
+    "publish": "NODE_ENV=test gulp build",
     "prebuild-hot": "gulp prebuild-hot"
   },
+  "electronVersion": "v0.36.4",
   "author": "Krzysztof Sztompka <sztompka.krzysztof@gmail.com>",
   "bugs": {
     "url": "https://github.com/uhlryk/my-electron-boilerplate/issues"
@@ -42,6 +44,7 @@
     "electron-prebuilt": "^0.36.3",
     "file-loader": "^0.8.5",
     "gulp": "^3.9.0",
+    "gulp-electron": "0.0.10",
     "gulp-preprocess": "^2.0.0",
     "gulp-shell": "^0.5.1",
     "node-sass": "^3.4.2",
