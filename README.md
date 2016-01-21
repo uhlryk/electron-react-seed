@@ -18,6 +18,7 @@ How to use this code as new app:
 
     rm -rf .git
     git init
+    git remote add origin https://github.com/yournick/your-app-url.git
     git add .
     git commit
 
