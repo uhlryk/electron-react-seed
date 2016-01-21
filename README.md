@@ -43,6 +43,16 @@ Compile/transpile/transform all source files and release electron (available in 
     
 ## Structure:
 
+  * src                - directory with all sources
+  * dist               - directory with Compiled/transpiled/transformed sourced (created automatically). You don't have to do anything here
+  * release            - directory with creaded electron app (created automatically)
+  * package.json       - standard npm package. But name and version will be copied to electron npm. THere is also field `electronVersion`
+  * src/main.js        - minimal electron main file
+  * src/package.json   - electron package, its field are created based on package.json
+  * src/app/index.jsx  - root react file
+  * src/app/components - place here all components
+  * src/app/reducers   - place here all redux reducers
+  * src/app/sass       - sass style files
 
 ## Technology:
 
