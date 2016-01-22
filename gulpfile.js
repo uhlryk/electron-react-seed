@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require("gulp-util");
 var shell = require('gulp-shell')
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
@@ -18,7 +19,8 @@ const APP_VERSION = packageJson.version;
 var webpackOptionsLoader = {
   test: /.jsx?$/,
   loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
-  include: path.join(__dirname, 'src/app')
+  include: path.join(__dirname, 'src/app'),
+  exclude: /node_modules/
 };
 var webpackOptions = {
   module: {
@@ -31,6 +33,11 @@ var webpackOptions = {
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
       }
     ]
   },
@@ -46,7 +53,20 @@ var webpackOptions = {
       path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets/'),
       path.resolve(__dirname, './node_modules/compass-mixins/lib/')
     ]
-  }
+  },
+  eslint: {
+
+  },
+  debug: true,
+  progress: false,
+  emitError: true,
+  emitWarning: true,
+  failOnError: true,
+  stats: {
+    colors: true,
+    reasons: true
+  },
+  devtool: 'source-map'
 };
 
 gulp.task('copy-electron', function() {
@@ -76,6 +96,7 @@ gulp.task('copy-electron-hot', function() {
 gulp.task('compile-react', function(done) {
   webpack(webpackOptions, function(err, stats) {
     if(err) console.log(err);
+    gutil.log("[webpack]", stats.toString({}));
     done();
   });
 });
