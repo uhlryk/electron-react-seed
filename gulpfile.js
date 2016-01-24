@@ -8,8 +8,10 @@ var path = require("path");
 var preprocess = require('gulp-preprocess');
 var electron = require('gulp-electron');
 var packageJson = require('./package.json');
+var myip = require('quick-local-ip');
 
-const WEBPACK_SERVER_HOST = 'http://localhost';
+const WEBPACK_NETWORK_IP = myip.getLocalIP4();
+const WEBPACK_SERVER_HOST = 'http://' + WEBPACK_NETWORK_IP;
 const WEBPACK_SERVER_PORT = 3000;
 const STATIC_PATH = 'static';
 const BUNDLE_FILE = 'bundle.js';
@@ -115,7 +117,7 @@ gulp.task('compile-react-hot', function(done) {
   new WebpackDevServer(webpack(webpackOptions), {
     hot: true,
     publicPath: '/' + STATIC_PATH + '/'
-  }).listen(WEBPACK_SERVER_PORT, "localhost", function(err) {
+  }).listen(WEBPACK_SERVER_PORT, WEBPACK_NETWORK_IP, function(err) {
     if(err) console.log(err);
     done();
     console.log('webpack dev server listening at ' + WEBPACK_SERVER_HOST + ':' + WEBPACK_SERVER_PORT);
