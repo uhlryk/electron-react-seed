@@ -50,6 +50,7 @@ var webpackOptions = {
     path: path.join(__dirname, './dist/' + STATIC_PATH + '/'),
     filename: BUNDLE_FILE
   },
+  target: 'electron',
   sassLoader: {
     includePaths: [
       path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets/'),
