@@ -58,6 +58,7 @@ Compile/transpile/transform all source files and release electron (available in 
 
   * electron
   * react
+  * react-router
   * jsx
   * redux
   * hot-loader
