@@ -1,3 +1,7 @@
+# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
+
+* * *
+
 # boilerplate electron app
 
 ## Installation:
