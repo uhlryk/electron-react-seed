@@ -1,5 +1,0 @@
-{
-  "name"    : "<!-- @echo APP_NAME -->",
-  "version" : "<!-- @echo APP_VERSION -->",
-  "main"    : "main.js"
-}
