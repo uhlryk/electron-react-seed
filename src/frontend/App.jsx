@@ -1,6 +1,10 @@
-import React from 'react'
-import { hot } from 'react-hot-loader'
+import React from "react";
+import Component from "./Component";
+const App = () => (
+    <div>
+        <p>Hello World! A A A</p>
+        <Component />
+    </div>
+);
 
-const App = () => <div>Hello World!</div>
-
-export default hot(module)(App)
+export default App;

@@ -1,7 +1,3 @@
-# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
-
-* * *
-
 # boilerplate electron app
 
 ## Installation:
@@ -10,7 +6,7 @@ How to use this code as new app:
 
 1 Clone this repository to new empty dir:
 
-    git clone https://github.com/uhlryk/my-electron-boilerplate.git emptyDirectory
+    git clone https://github.com/uhlryk/electron-react-seed emptyDirectory
 
 2 Create your app repository
 
@@ -34,44 +30,18 @@ How to use this code as new app:
 
 ## Commands:
 
-Compile/transpile/transform all source files and run electron
+### Development
 
-    npm run prebuild
-Compile/transpile/transform all source files and run electron with hot loader (unsuitable for deploy, perfect for development)
+run both commands
 
-    npm run prebuild-hot
+```
+npm run start-main-dev
+```
 
-Compile/transpile/transform all source files and release electron (available in ./release)
+```
+npm run start-renderer-dev
+```
 
-    npm run release
-    
-## Structure:
-
-  * src                - directory with all sources
-  * dist               - directory with Compiled/transpiled/transformed sourced (created automatically). You don't have to do anything here
-  * release            - directory with creaded electron app (created automatically)
-  * package.json       - standard npm package. But name and version will be copied to electron npm. THere is also field `electronVersion`
-  * src/main.js        - minimal electron main file
-  * src/package.json   - electron package, its field are created based on package.json
-  * src/app/index.jsx  - root react file
-  * src/app/components - place here all components
-  * src/app/reducers   - place here all redux reducers
-  * src/app/sass       - sass style files
-
-## Technology:
-
-  * electron
-  * react
-  * react-router
-  * jsx
-  * redux
-  * hot-loader
-  * webpack
-  * ES6 & ES7
-  * gulp
-  * bootstrap 3
-  * sass
-  * compass
 
 ## Licence:
 
