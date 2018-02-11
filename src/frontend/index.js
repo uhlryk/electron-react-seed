@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 
 const render = () => {
-    const Root = require("./Root").default;
+    const App = require("./App").default;
     ReactDOM.render(
         <AppContainer>
-            <Root />
+            <App />
         </AppContainer>,
         document.getElementById("App")
     );
