@@ -9,7 +9,8 @@
   },
   "extends": [
     "standard",
-    "prettier"
+    "prettier",
+    "plugin:react/recommended"
   ],
   "rules": {
     "strict": 0,
