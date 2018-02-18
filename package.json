@@ -2,7 +2,7 @@
   "name": "electron-react-seed",
   "productName": "electron-react-seed",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "My Electron react boilerplate",
   "main": "src/index.js",
   "scripts": {
     "dev": "cross-env START_HOT=1 npm run start-renderer-dev",

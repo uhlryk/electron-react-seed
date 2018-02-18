@@ -24,6 +24,8 @@ Before commit prettier and linter will be run.
 
 * electron
 * react
+* hot module loader
+* sass
 
 ## License 
 
