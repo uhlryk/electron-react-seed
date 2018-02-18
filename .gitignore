@@ -1,3 +1,6 @@
 node_modules
-out
 .eslintcache
+app/main.prod.js
+app/main.prod.js.map
+app/dist
+dist

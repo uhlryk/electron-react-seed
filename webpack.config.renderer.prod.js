@@ -7,18 +7,14 @@ import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import merge from "webpack-merge";
-import UglifyJSPlugin from "uglifyjs-webpack-plugin";
 import baseConfig from "./webpack.config.base";
-import CheckNodeEnv from "./internals/scripts/CheckNodeEnv";
-
-CheckNodeEnv("production");
 
 export default merge.smart(baseConfig, {
     devtool: "source-map",
 
     target: "electron-renderer",
 
-    entry: "./app/index",
+    entry: "./app/frontend/index",
 
     output: {
         path: path.join(__dirname, "app/dist"),
@@ -164,11 +160,6 @@ export default merge.smart(baseConfig, {
          */
         new webpack.EnvironmentPlugin({
             NODE_ENV: "production"
-        }),
-
-        new UglifyJSPlugin({
-            parallel: true,
-            sourceMap: true
         }),
 
         new ExtractTextPlugin("style.css"),
