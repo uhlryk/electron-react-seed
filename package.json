@@ -1,110 +1,113 @@
 {
-    "name": "electron-react-seed",
-    "productName": "electron-react-seed",
-    "version": "1.0.0",
-    "description": "My Electron application description",
-    "main": "src/index.js",
-    "scripts": {
-        "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
-        "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./app/main.dev",
-        "start-renderer-dev": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
-        "linter": "eslint --cache --color --ext .jsx,.js src",
-        "prettier-all": "prettier --config .prettierrc --write 'src/**/*.js'",
-        "prettier-changed": "git diff --name-only --diff-filter=ACMRTU HEAD | grep \".*\\.js$\" | xargs prettier --config .prettierrc --write",
-        "coverage": "istanbul cover -x 'src/**/*.spec.js' ./node_modules/.bin/_mocha -- --require source-map-support --require babel-register --require babel-polyfill --require init.mocha.js --check-leaks --timeout 3000 'src/**/*.spec.js' && open coverage/lcov-report/index.html",
-        "complexity": "plato -r --eslint .eslintrc --exclude .spec.js -d report src && open report/index.html",
-        "precommit": "lint-staged && npm run linter",
-        "package": "npm run build && build --publish never",
-        "package-all": "npm run build && build -mwl",
-        "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
-        "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
-        "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
-        "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --colors"
-    },
-    "keywords": [],
-    "author": "krzysztofsztompka",
-    "license": "MIT",
-    "config": {
-        "forge": {
-            "make_targets": {
-                "win32": [
-                    "squirrel"
-                ],
-                "darwin": [
-                    "zip"
-                ],
-                "linux": [
-                    "deb",
-                    "rpm"
-                ]
-            },
-            "electronPackagerConfig": {
-                "packageManager": "yarn"
-            },
-            "electronWinstallerConfig": {
-                "name": "electron_react_seed"
-            },
-            "electronInstallerDebian": {},
-            "electronInstallerRedhat": {},
-            "github_repository": {
-                "owner": "",
-                "name": ""
-            },
-            "windowsStoreConfig": {
-                "packageName": "",
-                "name": "electronreactseed"
-            }
-        }
-    },
-    "dependencies": {
-        "electron-debug": "^1.5.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
-        "react-hot-loader": "^4.0.0-beta.13",
-        "source-map-support": "^0.5.3"
-    },
-    "devDependencies": {
-        "babel-eslint": "^8.2.1",
-        "babel-loader": "^7.1.2",
-        "babel-plugin-add-module-exports": "^0.2.1",
-        "babel-plugin-flow-runtime": "^0.17.0",
-        "babel-plugin-transform-async-to-generator": "^6.24.1",
-        "babel-plugin-transform-es2015-classes": "^6.24.1",
-        "babel-preset-env": "^1.6.1",
-        "babel-preset-react": "^6.24.1",
-        "babel-preset-stage-0": "^6.24.1",
-        "babel-register": "^6.26.0",
-        "concurrently": "^3.5.1",
-        "cross-env": "^5.1.3",
-        "electron": "^1.7.11",
-        "electron-builder": "^19.55.3",
-        "electron-devtools-installer": "^2.2.3",
-        "electron-rebuild": "^1.7.3",
-        "eslint": "^3.19.0",
-        "eslint-config-airbnb": "^15",
-        "eslint-config-prettier": "^2.9.0",
-        "eslint-config-standard": "^11.0.0-beta.0",
-        "eslint-plugin-import": "^2.8.0",
-        "eslint-plugin-jsx-a11y": "^5",
-        "eslint-plugin-mocha": "^4.11.0",
-        "eslint-plugin-node": "^6.0.0",
-        "eslint-plugin-promise": "^3.6.0",
-        "eslint-plugin-react": "^7",
-        "eslint-plugin-standard": "^3.0.1",
-        "extract-text-webpack-plugin": "^3.0.2",
-        "husky": "^0.14.3",
-        "istanbul": "^0.4.5",
-        "lint-staged": "^6.1.0",
-        "plato": "^1.7.0",
-        "prettier": "^1.10.2",
-        "webpack": "^3.11.0",
-        "webpack-dev-server": "^2.11.1",
-        "webpack-merge": "^4.1.1"
-    },
-    "lint-staged": {
-        "*.js": [
-            "prettier --config .prettierrc --write",
-            "git add"
+  "name": "electron-react-seed",
+  "productName": "electron-react-seed",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
+    "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./app/main.dev",
+    "start-renderer-dev": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
+    "linter": "eslint --cache --color --ext .jsx,.js src",
+    "prettier-all": "prettier --config .prettierrc --write 'src/**/*.js'",
+    "prettier-changed": "git diff --name-only --diff-filter=ACMRTU HEAD | grep \".*\\.js$\" | xargs prettier --config .prettierrc --write",
+    "coverage": "istanbul cover -x 'src/**/*.spec.js' ./node_modules/.bin/_mocha -- --require source-map-support --require babel-register --require babel-polyfill --require init.mocha.js --check-leaks --timeout 3000 'src/**/*.spec.js' && open coverage/lcov-report/index.html",
+    "complexity": "plato -r --eslint .eslintrc --exclude .spec.js -d report src && open report/index.html",
+    "precommit": "lint-staged && npm run linter",
+    "package": "npm run build && build --publish never",
+    "package-all": "npm run build && build -mwl",
+    "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
+    "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
+    "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
+    "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --colors"
+  },
+  "keywords": [],
+  "author": "krzysztofsztompka",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
         ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "electron_react_seed"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "electronreactseed"
+      }
     }
+  },
+  "dependencies": {
+    "electron-debug": "^1.5.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^4.0.0-beta.13",
+    "source-map-support": "^0.5.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-flow-runtime": "^0.17.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
+    "electron": "^1.7.11",
+    "electron-builder": "^19.55.3",
+    "electron-devtools-installer": "^2.2.3",
+    "electron-rebuild": "^1.7.3",
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb": "^15",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "lint-staged": "^6.1.0",
+    "node-sass": "^4.7.2",
+    "plato": "^1.7.0",
+    "prettier": "^1.10.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ]
+  }
 }

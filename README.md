@@ -16,6 +16,10 @@ This one is as simple as possible to fulfill my needs. If you need something mor
 * **npm run prettier-changed** - use prettier on changed js files
 * **npm run complexity** run static complexity
 
+## Git hooks
+
+Before commit prettier and linter will be run.
+
 ## Frameworks and libraries
 
 * electron
