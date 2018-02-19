@@ -26,6 +26,9 @@ Before commit prettier and linter will be run.
 * react
 * hot module loader
 * sass
+* compass
+* bootstrap3
+* font awesome
 
 ## License 
 
