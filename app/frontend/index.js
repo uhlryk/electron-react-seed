@@ -12,7 +12,7 @@ render(
 );
 
 if (module.hot) {
-    module.hot.accept("./App", () => {
+    module.hot.accept("./components/app/App", () => {
         const App = require("./components/app/App"); // eslint-disable-line global-require
         render(
             <AppContainer>
