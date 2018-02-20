@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import App from "./components/app/App";
-import styles from "./globalStyles/index.global.scss"; // eslint-disable-line
+import styles from "./styles/index.global.scss"; // eslint-disable-line
 
 render(
     <AppContainer>
