@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
     "electron-debug": "^1.5.0",
     "font-awesome": "^4.7.0",

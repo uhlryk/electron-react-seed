@@ -1,3 +1,13 @@
 body {
     background: lightgrey;
 }
+
+.input {
+    @extend .form-control
+}
+
+.lead {
+    @extend .lead;
+    @extend .text-uppercase;
+    @extend .text-center;
+}

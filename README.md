@@ -29,6 +29,25 @@ Before commit prettier and linter will be run.
 * compass
 * bootstrap3
 * font awesome
+* css modules (sass)
+
+## Styles
+
+All styles can be written using sass. 
+Configuration allows global styles `*.global.scss`.
+And scoped locally `*.scss`.
+If you use global styles you can extend from bootstrap3 classes and from fontAwesome
+
+```scss
+.button {
+    @extend .btn;
+
+    &--normal {
+        @extend .btn-default;
+    }
+}
+```
+Local styles can not extend from above but their advantage is that they are scoped to component.
 
 ## License 
 

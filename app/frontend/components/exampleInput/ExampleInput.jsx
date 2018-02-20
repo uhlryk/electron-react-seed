@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ExampleInput = ({ onChange, text }) => (
     <div>
-        <input onChange={ onChange } value={ text } />
+        <input className="input" onChange={ onChange } value={ text } />
     </div>
 );
 
