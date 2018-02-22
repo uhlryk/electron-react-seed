@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ExampleSecond = ({ match }) => (
-    <div>{ match.path }{ match.params.pageId }</div>
+    <div>
+        {match.path}
+        {match.params.pageId}
+    </div>
 );
 
 ExampleSecond.propTypes = {
