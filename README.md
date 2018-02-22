@@ -24,6 +24,7 @@ Before commit prettier and linter will be run.
 
 * electron
 * react
+* react-router
 * hot module loader
 * sass
 * compass
