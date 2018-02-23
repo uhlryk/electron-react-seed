@@ -1,7 +1,5 @@
 import React from "react";
-import ExampleInput from "../exampleInput/ExampleInput";
-import ExampleOutput from "../exampleOutput/ExampleOutput";
-class ExampleParent extends React.Component {
+class ListTasks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,13 +16,11 @@ class ExampleParent extends React.Component {
     render() {
         return (
             <div>
-                <ExampleInput onChange={this.onInputChange} text={this.state.text} />
-                <ExampleOutput text={this.state.text} />
             </div>
         );
     }
 }
 
-ExampleParent.propTypes = {};
+ListTasks.propTypes = {};
 
-export default ExampleParent;
+export default ListTasks;

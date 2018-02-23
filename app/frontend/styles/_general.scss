@@ -11,3 +11,11 @@ body {
     @extend .text-uppercase;
     @extend .text-center;
 }
+
+.button {
+    @extend .btn;
+
+    &--normal {
+        @extend .btn-success;
+    }
+}

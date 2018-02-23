@@ -12,6 +12,8 @@
     "production": {
       "presets": ["react-optimize"],
       "plugins": [
+          "transform-decorators-legacy",
+          "transform-decorators",
           "transform-class-properties",
           "transform-es2015-classes",
           "dev-expression"
@@ -19,8 +21,11 @@
     },
     "development": {
       "plugins": [
-        "transform-class-properties",
-        "transform-es2015-classes"
+          "transform-decorators-legacy",
+          "transform-decorators",
+          "transform-class-properties",
+          "transform-es2015-classes"
+
       ]
     }
   }

@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ExampleSecond = ({ match }) => (
+const RemoveTask = ({ match }) => (
     <div>
         {match.path}
-        {match.params.pageId}
+        {match.params.taskId}
     </div>
 );
 
-ExampleSecond.propTypes = {
+RemoveTask.propTypes = {
     match: PropTypes.object.isRequired
 };
 
-export default ExampleSecond;
+export default RemoveTask;
