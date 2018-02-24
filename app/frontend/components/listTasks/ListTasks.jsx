@@ -13,11 +13,18 @@ class ListTasks extends React.Component {
     }
 
     render() {
-        const list = this.props.store.taskStore.tasks.map(task => <div key={task.id}>{task.content}</div>)
+        const list = this.props.store.taskStore.tasks.map(task => (
+            <tr key={task.id}>
+                <td>{task.content}</td>
+                <td>
+                    <button className="button button--danger" onClick={ () => this.onDeleteClick(task.id) }>Delete</button>
+                </td>
+            </tr>
+        ));
         return (
-            <div>
-                { list }
-            </div>
+            <table className="table table-striped">
+                <tbody>{list}</tbody>
+            </table>
         );
     }
 }

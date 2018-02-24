@@ -11,6 +11,8 @@ class TaskStore {
             id: uuid()
         });
     }
+    @action.bound
+    removeTask(taskId) {}
 }
 
 export default TaskStore;

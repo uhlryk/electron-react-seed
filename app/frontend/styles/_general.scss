@@ -18,4 +18,8 @@ body {
     &--normal {
         @extend .btn-success;
     }
+
+    &--danger {
+        @extend .btn-danger;
+    }
 }
