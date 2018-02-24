@@ -1,15 +1,15 @@
 import React from "react";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
-@inject("store")
+@inject("store") @observer
 class ListTasks extends React.Component {
     constructor(props) {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
-    onDeleteClick(evt) {
-        const text = evt.target.value;
+    onDeleteClick(taskId) {
+        this.props.store.taskStore.removeTask(taskId);
     }
 
     render() {

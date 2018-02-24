@@ -12,7 +12,10 @@ class TaskStore {
         });
     }
     @action.bound
-    removeTask(taskId) {}
+    removeTask(taskId) {
+        const task = this.tasks.find(task => task.id === taskId);
+        this.tasks.remove(task);
+    }
 }
 
 export default TaskStore;
