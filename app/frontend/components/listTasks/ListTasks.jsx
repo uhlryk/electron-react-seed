@@ -1,9 +1,11 @@
 import React from "react";
-import { inject, observer } from "mobx-react";
-import {withRouter} from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 @withRouter
-@inject("store") @observer
+@connect(state => ({
+    taskReducer: state.taskReducer
+}))
 class ListTasks extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +17,14 @@ class ListTasks extends React.Component {
     }
 
     render() {
-        const list = this.props.store.taskStore.tasks.map(task => (
+        console.log(this.props);
+        const list = this.props.taskReducer.tasks.map(task => (
             <tr key={task.id}>
-                <td>{task.content}</td>
+                <td>{task.title}</td>
                 <td>
-                    <button className="button button--danger" onClick={ () => this.onDeleteClick(task.id) }>Delete</button>
+                    <button className="button button--danger" onClick={() => this.onDeleteClick(task.id)}>
+                        Delete
+                    </button>
                 </td>
             </tr>
         ));
