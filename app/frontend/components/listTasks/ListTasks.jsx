@@ -1,21 +1,22 @@
 import React from "react";
+import { inject } from "mobx-react";
+
+@inject("store")
 class ListTasks extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: ""
-        };
-        this.onInputChange = this.onInputChange.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
-    onInputChange(evt) {
+    onDeleteClick(evt) {
         const text = evt.target.value;
-        this.setState((prevState, props) => ({ text }));
     }
 
     render() {
+        const list = this.props.store.taskStore.tasks.map(task => <div key={task.id}>{task.content}</div>)
         return (
             <div>
+                { list }
             </div>
         );
     }

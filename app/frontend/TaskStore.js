@@ -1,4 +1,5 @@
 import { observable, action } from "mobx";
+import uuid from "uuid";
 
 class TaskStore {
     @observable tasks = [];
@@ -6,7 +7,8 @@ class TaskStore {
     @action.bound
     addTask(task) {
         this.tasks.push({
-            task: task
+            content: task,
+            id: uuid()
         });
     }
 }

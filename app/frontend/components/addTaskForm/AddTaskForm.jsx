@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {inject,observer } from "mobx-react";
+import { inject } from "mobx-react";
 
+@inject("store")
 class AddTaskForm extends React.Component {
 
     constructor(props) {
@@ -38,4 +39,4 @@ class AddTaskForm extends React.Component {
 AddTaskForm.propTypes = {
 };
 
-export default inject("store")(AddTaskForm);
+export default AddTaskForm;
