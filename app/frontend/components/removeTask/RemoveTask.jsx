@@ -1,15 +1,33 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
+import {withRouter} from "react-router-dom";
+import classNames from "classnames";
+import styles from "./styles.scss";
 
-const RemoveTask = ({ match }) => (
-    <div>
-        {match.path}
-        {match.params.taskId}
-    </div>
-);
+@withRouter
+@inject("store") @observer
+class DeleteTask extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
+    }
 
-RemoveTask.propTypes = {
-    match: PropTypes.object.isRequired
-};
+    onDeleteClick() {
+        this.props.store.taskStore.removeTask(this.props.match.params.taskId);
+        this.props.history.push("/");
+    }
 
-export default RemoveTask;
+    render() {
+        return (
+            <div>
+                <h3>Do you want remove</h3>
+                <div className={classNames(styles.exampleText, "lead")}>{this.props.store.taskStore.tasks.find(task => task.id === this.props.match.params.taskId).content}</div>
+                <button onClick={this.onDeleteClick}>Delete</button>
+            </div>
+        );
+    }
+}
+
+DeleteTask.propTypes = {};
+
+export default DeleteTask;

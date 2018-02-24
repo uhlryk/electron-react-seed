@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { inject } from "mobx-react";
+import {withRouter} from "react-router-dom";
 
+@withRouter
 @inject("store")
 class AddTaskForm extends React.Component {
 
@@ -21,8 +23,8 @@ class AddTaskForm extends React.Component {
     }
 
     onAddTask() {
-        console.log(this.props);
         this.props.store.taskStore.addTask(this.state.task);
+        this.props.history.push("/");
     }
 
     render() {
