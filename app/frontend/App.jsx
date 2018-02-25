@@ -22,10 +22,10 @@ export default class App extends React.Component {
 
                         <hr />
                         <Switch>
-                            <Redirect exact from="/" to={tasks.constants.ROUTE_PATH} />
+                            <Redirect exact from="/" to={tasks.constants.ROUTE_PATH} />module
                             <Route
                                 path={tasks.constants.ROUTE_PATH}
-                                component={tasks.route}
+                                component={tasks.main}
                             />
                         </Switch>
                     </div>

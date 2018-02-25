@@ -4,7 +4,7 @@ import ListTasks from "./components/ListTasks";
 import AddTaskForm from "./components/AddTaskForm";
 import RemoveTask from "./components/RemoveTask";
 
-const route = ({ match }) => (
+const main = ({ match }) => (
     <div>
         <h3>Tasks section</h3>
         <ul>
@@ -30,4 +30,4 @@ const route = ({ match }) => (
     </div>
 );
 
-export default route;
+export default main;

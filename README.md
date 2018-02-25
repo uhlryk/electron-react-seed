@@ -33,6 +33,38 @@ Before commit prettier and linter will be run.
 * font awesome
 * css modules (sass)
 
+## Project structure
+ * app
+   * frontend - frontend app used in electron renderer process
+     * components - should contain all sharable react components
+     * modules - each module should be in named folder. It contain example component called *tasks*
+     * reducers  - directory for global reducers
+       * index.js - root reducer
+     * styles - directory for global styles
+       * index.global.scss - root global style
+       * _variables.scss - place for overriding bootstrap variables
+       * _mixins.scss - place for overriding bootstrap mixins
+       * _bootstrap.scss - imports all bootstrap styles
+       * _fontAwesome.scss - imports font awesome
+       * _general.scss - place for base global styles
+     * App.jsx - main react setup file
+     * index.js - root frontend script file
+   * app.html - renderer electron process
+   * main.dev.js - main electron process
+   
+## Module structure
+
+This is just suggested module structure
+ * [moduleName]
+   * components - place for module react components
+   * actions.js - place for module actions and actions creators
+   * actionTypes.js - actions type constants
+   * constants.js - module constants
+   * index.js - main module file
+   * reducer.js - module reducer
+   * main.jsx - root module react component
+   * styles.scss - css module
+
 ## Styles
 
 All styles can be written using sass. 
