@@ -9,7 +9,6 @@ import { addNew } from "../../actions/tasks";
     taskReducer: state.taskReducer
 }))
 class AddTaskForm extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {

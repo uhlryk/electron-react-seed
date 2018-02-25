@@ -9,6 +9,7 @@ export function addNew(title) {
         }
     };
 }
+
 export function remove(taskId) {
     return {
         type: REMOVE,
