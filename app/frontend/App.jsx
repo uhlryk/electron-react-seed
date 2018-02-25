@@ -1,12 +1,10 @@
 import React from "react";
-import { MemoryRouter, Route, Link } from "react-router-dom";
+import { MemoryRouter, Route, Link, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
-import reducer from "./reducers/index.js";
+import reducer from "./reducers/index";
 import { createStore } from "redux";
 
-import ListTasks from "./components/listTasks/ListTasks";
-import AddTaskForm from "./components/addTaskForm/AddTaskForm";
-import RemoveTask from "./components/removeTask/RemoveTask";
+import * as tasks from "./modules/tasks/index";
 
 const store = createStore(reducer, {});
 export default class App extends React.Component {
@@ -15,21 +13,17 @@ export default class App extends React.Component {
             <Provider store={store}>
                 <MemoryRouter>
                     <div>
-                        <h2>Welcome to React!</h2>
+                        <h2>TODO base app</h2>
                         <ul>
                             <li>
-                                <Link to="/">List</Link>
-                            </li>
-                            <li>
-                                <Link to="/add">Add Task</Link>
+                                <Link to="/tasks">tasksList</Link>
                             </li>
                         </ul>
 
                         <hr />
 
-                        <Route exact path="/" component={ListTasks} />
-                        <Route path="/add" component={AddTaskForm} />
-                        <Route path="/remove/:taskId" component={RemoveTask} />
+                        <Route path="/tasks" component={tasks.route} />
+                        <Redirect exact from="/" to="/tasks" />
                     </div>
                 </MemoryRouter>
             </Provider>

@@ -1,14 +1,14 @@
 import React from "react";
-import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
-import styles from "./styles.scss";
+import styles from "../styles.scss";
 import { connect } from "react-redux";
-import { addNew, remove } from "../../actions/tasks";
+import { remove } from "../actions";
+import PropTypes from "prop-types";
 
 @withRouter
 @connect(state => ({
-    taskReducer: state.taskReducer
+    tasks: state.tasks
 }))
 class DeleteTask extends React.Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class DeleteTask extends React.Component {
 
     onDeleteClick() {
         this.props.dispatch(remove(this.props.match.params.taskId));
-        this.props.history.push("/");
+        this.props.onSuccessRedirect &&
+            this.props.history.push(this.props.onSuccessRedirect);
     }
 
     render() {
@@ -26,7 +27,11 @@ class DeleteTask extends React.Component {
             <div>
                 <h3>Do you want remove</h3>
                 <div className={classNames(styles.exampleText, "lead")}>
-                    {this.props.taskReducer.tasks.find(task => task.id === this.props.match.params.taskId).title}
+                    {
+                        this.props.tasks.tasks.find(
+                            task => task.id === this.props.match.params.taskId
+                        ).title
+                    }
                 </div>
                 <button onClick={this.onDeleteClick}>Delete</button>
             </div>
@@ -34,6 +39,8 @@ class DeleteTask extends React.Component {
     }
 }
 
-DeleteTask.propTypes = {};
+DeleteTask.propTypes = {
+    onSuccessRedirect: PropTypes.string
+};
 
 export default DeleteTask;

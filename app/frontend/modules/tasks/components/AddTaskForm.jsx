@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addNew } from "../../actions/tasks";
+import { addNew } from "../actions";
 
 @withRouter
 @connect(state => ({
-    taskReducer: state.taskReducer
+    tasks: state.tasks
 }))
 class AddTaskForm extends React.Component {
     constructor(props) {
@@ -26,13 +26,18 @@ class AddTaskForm extends React.Component {
 
     onAddTask() {
         this.props.dispatch(addNew(this.state.title));
-        this.props.history.push("/");
+        this.props.onSuccessRedirect &&
+            this.props.history.push(this.props.onSuccessRedirect);
     }
 
     render() {
         return (
             <div>
-                <input className="input" onChange={this.onChangeTitle} value={this.state.title} />
+                <input
+                    className="input"
+                    onChange={this.onChangeTitle}
+                    value={this.state.title}
+                />
                 <button className="button button--normal" onClick={this.onAddTask}>
                     Save
                 </button>
@@ -41,6 +46,8 @@ class AddTaskForm extends React.Component {
     }
 }
 
-AddTaskForm.propTypes = {};
+AddTaskForm.propTypes = {
+    onSuccessRedirect: PropTypes.string
+};
 
 export default AddTaskForm;

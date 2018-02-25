@@ -1,5 +1,5 @@
 import uuid from "uuid";
-import { ADD_NEW, REMOVE } from "../actions/tasks";
+import { ADD_NEW, REMOVE } from "./actions";
 
 /**
  *  state
@@ -11,11 +11,13 @@ import { ADD_NEW, REMOVE } from "../actions/tasks";
  *  }
  */
 
-export default function taskReducer(state = { tasks: [] }, action) {
+export default (state = { tasks: [] }, action) => {
     switch (action.type) {
         case ADD_NEW:
             return Object.assign({}, state, {
-                tasks: (state.tasks || []).concat(Object.assign({}, action.payload, { id: uuid() }))
+                tasks: (state.tasks || []).concat(
+                    Object.assign({}, action.payload, { id: uuid() })
+                )
             });
         case REMOVE:
             return Object.assign({}, state, {
@@ -24,4 +26,4 @@ export default function taskReducer(state = { tasks: [] }, action) {
         default:
             return state;
     }
-}
+};

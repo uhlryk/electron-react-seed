@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 @withRouter
 @connect(state => ({
-    taskReducer: state.taskReducer
+    tasks: state.tasks
 }))
 class ListTasks extends React.Component {
     constructor(props) {
@@ -13,16 +13,19 @@ class ListTasks extends React.Component {
     }
 
     onDeleteClick(taskId) {
-        this.props.history.push(`/remove/${taskId}`);
+        this.props.history.push(`${this.props.match.url}/remove/${taskId}`);
     }
 
     render() {
         console.log(this.props);
-        const list = this.props.taskReducer.tasks.map(task => (
+        const list = this.props.tasks.tasks.map(task => (
             <tr key={task.id}>
                 <td>{task.title}</td>
                 <td>
-                    <button className="button button--danger" onClick={() => this.onDeleteClick(task.id)}>
+                    <button
+                        className="button button--danger"
+                        onClick={() => this.onDeleteClick(task.id)}
+                    >
                         Delete
                     </button>
                 </td>
