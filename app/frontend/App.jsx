@@ -16,14 +16,17 @@ export default class App extends React.Component {
                         <h2>TODO base app</h2>
                         <ul>
                             <li>
-                                <Link to="/tasks">tasksList</Link>
+                                <Link to={tasks.constants.ROUTE_PATH}>{tasks.constants.NAME}</Link>
                             </li>
                         </ul>
 
                         <hr />
                         <Switch>
-                            <Redirect exact from="/" to="/tasks" />
-                            <Route path="/tasks" component={tasks.route} />
+                            <Redirect exact from="/" to={tasks.constants.ROUTE_PATH} />
+                            <Route
+                                path={tasks.constants.ROUTE_PATH}
+                                component={tasks.route}
+                            />
                         </Switch>
                     </div>
                 </MemoryRouter>
