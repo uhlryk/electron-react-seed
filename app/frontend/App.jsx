@@ -1,5 +1,5 @@
 import React from "react";
-import { MemoryRouter, Route, Link, Redirect } from "react-router-dom";
+import { MemoryRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
 import { createStore } from "redux";
@@ -21,9 +21,10 @@ export default class App extends React.Component {
                         </ul>
 
                         <hr />
-
-                        <Route path="/tasks" component={tasks.route} />
-                        <Redirect exact from="/" to="/tasks" />
+                        <Switch>
+                            <Redirect exact from="/" to="/tasks" />
+                            <Route path="/tasks" component={tasks.route} />
+                        </Switch>
                     </div>
                 </MemoryRouter>
             </Provider>
