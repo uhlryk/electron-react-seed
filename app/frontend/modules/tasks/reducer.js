@@ -1,5 +1,5 @@
 import uuid from "uuid";
-import { ADD_NEW, REMOVE } from "./actions";
+import * as actionTypes from "./actionTypes";
 
 /**
  *  state
@@ -13,13 +13,13 @@ import { ADD_NEW, REMOVE } from "./actions";
 
 export default (state = { tasks: [] }, action) => {
     switch (action.type) {
-        case ADD_NEW:
+        case actionTypes.ADD_NEW:
             return Object.assign({}, state, {
                 tasks: (state.tasks || []).concat(
                     Object.assign({}, action.payload, { id: uuid() })
                 )
             });
-        case REMOVE:
+        case actionTypes.REMOVE:
             return Object.assign({}, state, {
                 tasks: (state.tasks || []).filter(task => task.id !== action.payload.id)
             });

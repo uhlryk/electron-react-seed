@@ -1,9 +1,8 @@
-export const ADD_NEW = "tasks.add_new";
-export const REMOVE = "tasks.remove";
+import * as actionTypes from "./actionTypes";
 
 export function addNew(title) {
     return {
-        type: ADD_NEW,
+        type: actionTypes.ADD_NEW,
         payload: {
             title
         }
@@ -12,7 +11,7 @@ export function addNew(title) {
 
 export function remove(taskId) {
     return {
-        type: REMOVE,
+        type: actionTypes.REMOVE,
         payload: {
             id: taskId
         }
