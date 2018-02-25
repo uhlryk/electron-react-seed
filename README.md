@@ -2,11 +2,7 @@
 
 This is boilerplate for any electron react projects.
 
-It is based on [https://github.com/chentsulin/electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate). 
-
-But some thigs are simplified.
-This one is as simple as possible to fulfill my needs. If you need something more feature rich, you should go with original one.
-
+It is heavily customized version of [https://github.com/chentsulin/electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate). 
 
 ## Commands
 
