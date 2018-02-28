@@ -59,6 +59,7 @@ This is just suggested module structure
    * constants.js - module constants
    * index.js - main module file
    * reducer.js - module reducer
+   * selectors.js - module reselect selectors
    * main.jsx - root module react component
    * styles.scss - css module
 
