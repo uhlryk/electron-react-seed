@@ -1,11 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { getTasks } from "../selectors";
+
+const mapStateToProps = state => ({
+    tasks: getTasks(state)
+});
 
 @withRouter
-@connect(state => ({
-    tasks: state.tasks
-}))
+@connect(mapStateToProps)
 class ListTasks extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +20,6 @@ class ListTasks extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const list = this.props.tasks.tasks.map(task => (
             <tr key={task.id}>
                 <td>{task.title}</td>

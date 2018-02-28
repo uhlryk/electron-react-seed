@@ -5,9 +5,7 @@ import { withRouter } from "react-router-dom";
 import { addNew } from "../actions";
 
 @withRouter
-@connect(state => ({
-    tasks: state.tasks
-}))
+@connect()
 class AddTaskForm extends React.Component {
     constructor(props) {
         super(props);

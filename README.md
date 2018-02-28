@@ -2,7 +2,7 @@
 
 This is boilerplate for any electron react projects.
 
-It is heavily customized version of [https://github.com/chentsulin/electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate). 
+It is a heavily customized version of [https://github.com/chentsulin/electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate). 
 
 ## Commands
 
@@ -14,7 +14,7 @@ It is heavily customized version of [https://github.com/chentsulin/electron-reac
 
 ## Git hooks
 
-Before commit prettier and linter will be run.
+run prettier and linter before commit.
 
 ## Frameworks and libraries
 
@@ -22,6 +22,7 @@ Before commit prettier and linter will be run.
 * react
 * react-router
 * redux
+* reselect
 * hot module loader
 * sass
 * compass
