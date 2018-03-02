@@ -1,14 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { getTasks } from "../selectors";
 
-const mapStateToProps = state => ({
-    tasks: getTasks(state)
-});
-
-@withRouter
-@connect(mapStateToProps)
 class ListTasks extends React.Component {
     constructor(props) {
         super(props);

@@ -2,14 +2,9 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import styles from "../styles.scss";
-import { connect } from "react-redux";
 import { remove } from "../actions";
 import PropTypes from "prop-types";
 
-@withRouter
-@connect(state => ({
-    tasks: state.tasks
-}))
 class DeleteTask extends React.Component {
     constructor(props) {
         super(props);

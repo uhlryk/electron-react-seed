@@ -39,8 +39,6 @@ export default merge.smart(baseConfig, {
                             // Here, we include babel plugins that are only required for the
                             // renderer process. The 'transform-*' plugins must be included
                             // before react-hot-loader/babel
-                            "transform-decorators-legacy",
-                            "transform-decorators",
                             "transform-class-properties",
                             "transform-es2015-classes",
                             "react-hot-loader/babel"
@@ -241,7 +239,11 @@ export default merge.smart(baseConfig, {
         before() {
             if (process.env.START_HOT) {
                 console.log("Starting Main Process...");
-                spawn("npm", ["run", "start-main-dev"], { shell: true, env: process.env, stdio: "inherit" })
+                spawn("npm", ["run", "start-main-dev"], {
+                    shell: true,
+                    env: process.env,
+                    stdio: "inherit"
+                })
                     .on("close", code => process.exit(code))
                     .on("error", spawnError => console.error(spawnError));
             }
