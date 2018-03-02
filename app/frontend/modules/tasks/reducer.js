@@ -1,4 +1,3 @@
-import uuid from "uuid";
 import * as actionTypes from "./actionTypes";
 
 /**
@@ -15,9 +14,7 @@ export default (state = { tasks: [] }, action) => {
     switch (action.type) {
         case actionTypes.ADD_NEW:
             return Object.assign({}, state, {
-                tasks: (state.tasks || []).concat(
-                    Object.assign({}, action.payload, { id: uuid() })
-                )
+                tasks: (state.tasks || []).concat([Object.assign({}, action.payload)])
             });
         case actionTypes.REMOVE:
             return Object.assign({}, state, {
