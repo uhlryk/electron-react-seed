@@ -4,6 +4,7 @@ import classNames from "classnames";
 import styles from "../styles.scss";
 import { remove } from "../actions";
 import PropTypes from "prop-types";
+import {push} from "react-router-redux";
 
 class DeleteTask extends React.Component {
     constructor(props) {
@@ -13,8 +14,7 @@ class DeleteTask extends React.Component {
 
     onDeleteClick() {
         this.props.dispatch(remove(this.props.match.params.taskId));
-        this.props.onSuccessRedirect &&
-            this.props.history.push(this.props.onSuccessRedirect);
+        this.props.onSuccessRedirect && this.props.dispatch(push(this.props.onSuccessRedirect));
     }
 
     render() {

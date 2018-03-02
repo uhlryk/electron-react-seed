@@ -1,22 +1,31 @@
 import React from "react";
-import { MemoryRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import { Route, Link, Redirect, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import reducer from "./reducers/index";
-import { createStore } from "redux";
+import { ConnectedRouter, routerReducer, routerMiddleware } from "react-router-redux";
+import createHistory from "history/createMemoryHistory";
+import reducers from "./reducers/index";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import * as tasks from "./modules/tasks/index";
+const history = createHistory();
 
-const store = createStore(reducer, {});
+const store = createStore(
+    combineReducers(Object.assign(reducers, { routing: routerReducer })),
+    applyMiddleware(routerMiddleware(history))
+);
+
 export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <MemoryRouter>
+                <ConnectedRouter history={history}>
                     <div>
                         <h2>TODO base app</h2>
                         <ul>
                             <li>
-                                <Link to={tasks.constants.ROUTE_PATH}>{tasks.constants.NAME}</Link>
+                                <Link to={tasks.constants.ROUTE_PATH}>
+                                    {tasks.constants.NAME}
+                                </Link>
                             </li>
                         </ul>
 
@@ -29,7 +38,7 @@ export default class App extends React.Component {
                             />
                         </Switch>
                     </div>
-                </MemoryRouter>
+                </ConnectedRouter>
             </Provider>
         );
     }

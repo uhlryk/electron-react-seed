@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { push } from "react-router-redux";
 import { addNew } from "../actions";
 
 class AddTaskForm extends React.Component {
@@ -20,8 +21,7 @@ class AddTaskForm extends React.Component {
 
     onAddTask() {
         this.props.dispatch(addNew(this.state.title));
-        this.props.onSuccessRedirect &&
-            this.props.history.push(this.props.onSuccessRedirect);
+        this.props.onSuccessRedirect && this.props.dispatch(push(this.props.onSuccessRedirect));
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React from "react";
+import {push} from "react-router-redux";
 
 class ListTasks extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ class ListTasks extends React.Component {
     }
 
     onDeleteClick(taskId) {
-        this.props.history.push(`${this.props.match.url}/remove/${taskId}`);
+        this.props.dispatch(push(`${this.props.match.url}/remove/${taskId}`));
     }
 
     render() {
