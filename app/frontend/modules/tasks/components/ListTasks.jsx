@@ -1,5 +1,8 @@
 import React from "react";
 import {push} from "react-router-redux";
+import {connect} from "react-redux";
+import {getTasks} from "../selectors";
+import {withRouter} from "react-router-dom";
 
 class ListTasks extends React.Component {
     constructor(props) {
@@ -33,6 +36,8 @@ class ListTasks extends React.Component {
     }
 }
 
-ListTasks.propTypes = {};
-
-export default ListTasks;
+export default withRouter(
+    connect(state => ({
+        tasks: getTasks(state)
+    }))(ListTasks)
+);

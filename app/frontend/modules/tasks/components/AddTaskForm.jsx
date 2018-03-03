@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { push } from "react-router-redux";
 import { addNew } from "../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class AddTaskForm extends React.Component {
     constructor(props) {
@@ -44,4 +46,6 @@ AddTaskForm.propTypes = {
     onSuccessRedirect: PropTypes.string
 };
 
-export default AddTaskForm;
+export default withRouter(
+    connect()(AddTaskForm)
+);

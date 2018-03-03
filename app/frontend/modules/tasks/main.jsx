@@ -1,26 +1,8 @@
 import React from "react";
 import { Link, Route, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 import ListTasks from "./components/ListTasks";
 import AddTaskForm from "./components/AddTaskForm";
-import RemoveTask from "./components/RemoveTask";
-import { getTasks } from "./selectors";
-
-const ListTaskWrapper = withRouter(
-    connect(state => ({
-        tasks: getTasks(state)
-    }))(ListTasks)
-);
-
-const AddTaskFormWrapper = withRouter(
-    connect()(AddTaskForm)
-);
-
-const RemoveTaskWrapper = withRouter(
-    connect(state => ({
-        tasks: state.tasks
-    }))(RemoveTask)
-);
+import DeleteTask from "./components/DeleteTask";
 
 const main = ({ match }) => (
     <div>
@@ -36,14 +18,14 @@ const main = ({ match }) => (
 
         <hr />
 
-        <Route exact path={match.url} component={ListTaskWrapper} />
+        <Route exact path={match.url} component={ListTasks} />
         <Route
             path={`${match.url}/add`}
-            render={() => <AddTaskFormWrapper onSuccessRedirect={match.url} />}
+            render={() => <AddTaskForm onSuccessRedirect={match.url} />}
         />
         <Route
             path={`${match.url}/remove/:taskId`}
-            render={() => <RemoveTaskWrapper onSuccessRedirect={match.url} />}
+            render={() => <DeleteTask onSuccessRedirect={match.url} />}
         />
     </div>
 );

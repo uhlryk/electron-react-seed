@@ -5,6 +5,7 @@ import styles from "../styles.scss";
 import { remove } from "../actions";
 import PropTypes from "prop-types";
 import {push} from "react-router-redux";
+import {connect} from "react-redux";
 
 class DeleteTask extends React.Component {
     constructor(props) {
@@ -38,4 +39,8 @@ DeleteTask.propTypes = {
     onSuccessRedirect: PropTypes.string
 };
 
-export default DeleteTask;
+export default withRouter(
+    connect(state => ({
+        tasks: state.tasks
+    }))(DeleteTask)
+);
