@@ -1,10 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { push } from "react-router-redux";
-import { addNew } from "../actions";
-import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
-import {LIST_ROUTE_PATH} from "../constants";
 
 class AddTaskForm extends React.Component {
     constructor(props) {
@@ -23,8 +18,7 @@ class AddTaskForm extends React.Component {
     }
 
     onAddTask() {
-        this.props.dispatch(addNew(this.state.title));
-        this.props.dispatch(push(LIST_ROUTE_PATH));
+        this.props.onAddTask(this.state.title);
     }
 
     render() {
@@ -44,8 +38,7 @@ class AddTaskForm extends React.Component {
 }
 
 AddTaskForm.propTypes = {
+    onAddTask: PropTypes.func.isRequired
 };
 
-export default withRouter(
-    connect()(AddTaskForm)
-);
+export default AddTaskForm;
