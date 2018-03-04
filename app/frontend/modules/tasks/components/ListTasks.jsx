@@ -1,22 +1,28 @@
 import React, { Fragment } from "react";
 import Element from "./Element";
+import PropTypes from "prop-types";
 
 class ListTasks extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
-    }
-
-    onDeleteClick(taskId) {
-        this.props.onDeleteClick(taskId)
-    }
-
     render() {
-        const list = this.props.tasks.tasks.map(task => (
-            <Element key={task.id} id={task.id} title={task.title} onDelete={this.onDeleteClick} />
+        const list = this.props.tasks.map(task => (
+            <Element
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                onDelete={this.props.onDeleteClick}
+            />
         ));
         return <Fragment>{list}</Fragment>;
     }
 }
 
+ListTasks.propTypes = {
+    tasks: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    onDeleteClick: PropTypes.func.isRequired
+};
 export default ListTasks;

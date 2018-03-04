@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Route, withRouter } from "react-router-dom";
 import ListTasksWrapper from "./routes/ListTasksWrapper";
 import AddTaskForm from "./routes/AddTaskForm";
-import DeleteTask from "./routes/DeleteTask";
+import DeleteTaskWrapper from "./routes/DeleteTaskWrapper";
 import * as constants from "./constants";
 class Main extends React.Component {
     render() {
@@ -28,7 +28,7 @@ class Main extends React.Component {
                 <Route path={constants.ADD_ROUTE_PATH} component={AddTaskForm} />
                 <Route
                     path={`${constants.DELETE_ROUTE_PATH}/:taskId`}
-                    component={DeleteTask}
+                    component={DeleteTaskWrapper}
                 />
             </div>
         );

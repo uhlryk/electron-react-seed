@@ -1,12 +1,7 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import styles from "../styles.scss";
-import { remove } from "../actions";
 import PropTypes from "prop-types";
-import {push} from "react-router-redux";
-import {connect} from "react-redux";
-import {LIST_ROUTE_PATH } from "../constants";
 class DeleteTask extends React.Component {
     constructor(props) {
         super(props);
@@ -14,8 +9,7 @@ class DeleteTask extends React.Component {
     }
 
     onDeleteClick() {
-        this.props.dispatch(remove(this.props.match.params.taskId));
-        this.props.dispatch(push(LIST_ROUTE_PATH));
+        this.props.onDeleteClick(this.props.task.id);
     }
 
     render() {
@@ -23,11 +17,7 @@ class DeleteTask extends React.Component {
             <div>
                 <h3>Do you want remove</h3>
                 <div className={classNames(styles.exampleText, "lead")}>
-                    {
-                        this.props.tasks.tasks.find(
-                            task => task.id === this.props.match.params.taskId
-                        ).title
-                    }
+                    {this.props.task.title}
                 </div>
                 <button onClick={this.onDeleteClick}>Delete</button>
             </div>
@@ -36,10 +26,11 @@ class DeleteTask extends React.Component {
 }
 
 DeleteTask.propTypes = {
+    task: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+    }).isRequired,
+    onDeleteClick: PropTypes.func.isRequired
 };
 
-export default withRouter(
-    connect(state => ({
-        tasks: state.tasks
-    }))(DeleteTask)
-);
+export default DeleteTask;

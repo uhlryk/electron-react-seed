@@ -18,7 +18,8 @@
     "semi": ["error", "always"],
     "valid-typeof": "off",
     "handle-callback-err": "off",
-    "standard/no-callback-literal": "off"
+    "standard/no-callback-literal": "off",
+    "react/no-unused-prop-types": 1
   },
   "globals": {
     "sinon": true,
