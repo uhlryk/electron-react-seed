@@ -1,4 +1,4 @@
-import ListTasks from "./ListTasks";
+import ListTasks from "../components/ListTasks";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {getTasks} from "../selectors";

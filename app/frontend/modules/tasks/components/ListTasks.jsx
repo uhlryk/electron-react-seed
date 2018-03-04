@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Element from "../components/Element";
+import Element from "./Element";
 
 class ListTasks extends React.Component {
     constructor(props) {
