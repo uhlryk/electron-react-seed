@@ -6,7 +6,7 @@ import { remove } from "../actions";
 import PropTypes from "prop-types";
 import {push} from "react-router-redux";
 import {connect} from "react-redux";
-
+import {LIST_ROUTE_PATH } from "../constants";
 class DeleteTask extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ class DeleteTask extends React.Component {
 
     onDeleteClick() {
         this.props.dispatch(remove(this.props.match.params.taskId));
-        this.props.onSuccessRedirect && this.props.dispatch(push(this.props.onSuccessRedirect));
+        this.props.dispatch(push(LIST_ROUTE_PATH));
     }
 
     render() {
@@ -36,7 +36,6 @@ class DeleteTask extends React.Component {
 }
 
 DeleteTask.propTypes = {
-    onSuccessRedirect: PropTypes.string
 };
 
 export default withRouter(

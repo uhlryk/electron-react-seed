@@ -23,7 +23,7 @@ export default class App extends React.Component {
                         <h2>TODO base app</h2>
                         <ul>
                             <li>
-                                <Link to={tasks.constants.ROUTE_PATH}>
+                                <Link to={tasks.constants.MODULE_ROUTE_PATH}>
                                     {tasks.constants.NAME}
                                 </Link>
                             </li>
@@ -31,9 +31,9 @@ export default class App extends React.Component {
 
                         <hr />
                         <Switch>
-                            <Redirect exact from="/" to={tasks.constants.ROUTE_PATH} />module
+                            <Redirect exact from="/" to={tasks.constants.MODULE_ROUTE_PATH} />module
                             <Route
-                                path={tasks.constants.ROUTE_PATH}
+                                path={tasks.constants.MODULE_ROUTE_PATH}
                                 component={tasks.Main}
                             />
                         </Switch>

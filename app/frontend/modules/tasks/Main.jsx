@@ -1,34 +1,34 @@
 import React from "react";
 import { Link, Route, withRouter } from "react-router-dom";
-import ListTasks from "./components/ListTasks";
-import AddTaskForm from "./components/AddTaskForm";
-import DeleteTask from "./components/DeleteTask";
-
+import ListTasksWrapper from "./routes/ListTasksWrapper";
+import AddTaskForm from "./routes/AddTaskForm";
+import DeleteTask from "./routes/DeleteTask";
+import * as constants from "./constants";
 class Main extends React.Component {
-
     render() {
         return (
             <div>
                 <h3>Tasks section</h3>
                 <ul>
                     <li>
-                        <Link to={this.props.match.url}>tasksList</Link>
+                        <Link to={constants.LIST_ROUTE_PATH}>tasksList</Link>
                     </li>
                     <li>
-                        <Link to={`${this.props.match.url}/add`}>Add Task</Link>
+                        <Link to={constants.ADD_ROUTE_PATH}>Add Task</Link>
                     </li>
                 </ul>
 
                 <hr />
 
-                <Route exact path={this.props.match.url} component={ListTasks} />
                 <Route
-                    path={`${this.props.match.url}/add`}
-                    render={() => <AddTaskForm onSuccessRedirect={this.props.match.url} />}
+                    exact
+                    path={constants.LIST_ROUTE_PATH}
+                    component={ListTasksWrapper}
                 />
+                <Route path={constants.ADD_ROUTE_PATH} component={AddTaskForm} />
                 <Route
-                    path={`${this.props.match.url}/remove/:taskId`}
-                    render={() => <DeleteTask onSuccessRedirect={this.props.match.url} />}
+                    path={`${constants.DELETE_ROUTE_PATH}/:taskId`}
+                    component={DeleteTask}
                 />
             </div>
         );

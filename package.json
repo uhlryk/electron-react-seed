@@ -96,6 +96,8 @@
     "electron-builder": "^19.55.3",
     "electron-devtools-installer": "^2.2.3",
     "electron-rebuild": "^1.7.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.0",
     "eslint-config-airbnb": "^15",
     "eslint-config-prettier": "^2.9.0",

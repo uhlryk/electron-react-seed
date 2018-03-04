@@ -54,13 +54,14 @@ run prettier and linter before commit.
 This is just suggested module structure
  * [moduleName]
    * components - place for module react components
+   * routes - place for module react routes components
    * actions.js - place for module actions and actions creators
    * actionTypes.js - actions type constants
    * constants.js - module constants
    * index.js - main module file
    * reducer.js - module reducer
    * selectors.js - module reselect selectors
-   * main.jsx - root module react component
+   * Main.jsx - root module react component
    * styles.scss - css module
 
 ## Styles

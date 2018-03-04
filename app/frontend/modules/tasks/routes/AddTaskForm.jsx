@@ -4,6 +4,7 @@ import { push } from "react-router-redux";
 import { addNew } from "../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {LIST_ROUTE_PATH} from "../constants";
 
 class AddTaskForm extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class AddTaskForm extends React.Component {
 
     onAddTask() {
         this.props.dispatch(addNew(this.state.title));
-        this.props.onSuccessRedirect && this.props.dispatch(push(this.props.onSuccessRedirect));
+        this.props.dispatch(push(LIST_ROUTE_PATH));
     }
 
     render() {
@@ -43,7 +44,6 @@ class AddTaskForm extends React.Component {
 }
 
 AddTaskForm.propTypes = {
-    onSuccessRedirect: PropTypes.string
 };
 
 export default withRouter(
