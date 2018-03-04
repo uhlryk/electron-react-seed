@@ -34,7 +34,7 @@ export default class App extends React.Component {
                             <Redirect exact from="/" to={tasks.constants.ROUTE_PATH} />module
                             <Route
                                 path={tasks.constants.ROUTE_PATH}
-                                component={tasks.main}
+                                component={tasks.Main}
                             />
                         </Switch>
                     </div>
