@@ -21,6 +21,8 @@ export default (state = { tasks: [] }, action) => {
                 tasks: (state.tasks || []).filter(task => task.id !== action.payload.id)
             });
         default:
-            return state;
+            return Object.assign({}, state, {
+                tasks: (state.tasks || []).slice()
+            });
     }
 };

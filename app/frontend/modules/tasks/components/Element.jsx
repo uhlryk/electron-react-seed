@@ -9,13 +9,15 @@ class Element extends React.Component {
     }
 
     onDelete() {
-        this.props.onDelete(this.props.id)
+        this.props.onDelete(this.props.id);
     }
     render() {
         return (
             <div>
                 <div>{this.props.title}</div>
-                <div><button onClick={this.onDelete}>Remove</button></div>
+                <div>
+                    <button onClick={this.onDelete}>Remove</button>
+                </div>
             </div>
         );
     }
