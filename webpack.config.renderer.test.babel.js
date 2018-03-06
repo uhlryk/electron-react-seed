@@ -11,6 +11,16 @@ export default {
     module: {
         rules: [
             {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            },
+            {
                 test: /\.global\.css$/,
                 use: ExtractTextPlugin.extract({
                     publicPath: "./",

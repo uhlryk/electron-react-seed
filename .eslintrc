@@ -23,6 +23,7 @@
   },
   "globals": {
     "sinon": true,
+    "Enzyme": true,
     "it": true,
     "xit": true,
     "expect": true,
