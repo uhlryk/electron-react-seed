@@ -12,7 +12,7 @@
     "prettier-all": "prettier --config .prettierrc --write 'app/**/*.jsx' --write 'app/**/*.js'",
     "prettier-changed": "git diff --name-only --diff-filter=ACMRTU HEAD | grep -e \".*\\.jsx$\" -e \".*\\.js$\" | xargs prettier --config .prettierrc --write",
     "test": "mocha-webpack --require babel-register --require babel-polyfill --require init.test.js --webpack-config webpack.config.renderer.test.babel.js $(find app -type f  -name \"*spec.jsx\" -o -name \"*spec.js\" )",
-    "precommit": "lint-staged && npm run linter",
+    "precommit": "lint-staged && npm run linter && npm test",
     "package": "npm run build && build --publish never",
     "package-all": "npm run build && build -mwl",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
