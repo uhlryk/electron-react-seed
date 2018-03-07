@@ -12,8 +12,6 @@
     "prettier-all": "prettier --config .prettierrc --write 'app/**/*.jsx' --write 'app/**/*.js'",
     "prettier-changed": "git diff --name-only --diff-filter=ACMRTU HEAD | grep -e \".*\\.jsx$\" -e \".*\\.js$\" | xargs prettier --config .prettierrc --write",
     "test": "mocha-webpack --require babel-register --require babel-polyfill --require init.test.js --webpack-config webpack.config.renderer.test.babel.js $(find app -type f  -name \"*spec.jsx\" -o -name \"*spec.js\" )",
-    "coverage": "istanbul cover -x 'src/**/*.spec.js' ./node_modules/.bin/_mocha -- --require source-map-support --require babel-register --require babel-polyfill --require init.mocha.js --check-leaks --timeout 3000 'src/**/*.spec.js' && open coverage/lcov-report/index.html",
-    "complexity": "plato -r --eslint .eslintrc --exclude .spec.js -d report src && open report/index.html",
     "precommit": "lint-staged && npm run linter",
     "package": "npm run build && build --publish never",
     "package-all": "npm run build && build -mwl",
@@ -73,6 +71,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "reselect": "^3.0.1",
     "source-map-support": "^0.5.3",
     "uuid": "^3.2.1"

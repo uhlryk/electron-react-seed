@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Link, Redirect, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter, routerReducer, routerMiddleware } from "react-router-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import createHistory from "history/createMemoryHistory";
 import reducers from "./reducers/index";
 import { createStore, combineReducers, applyMiddleware } from "redux";
@@ -11,7 +12,8 @@ const history = createHistory();
 
 const store = createStore(
     combineReducers(Object.assign(reducers, { routing: routerReducer })),
-    applyMiddleware(routerMiddleware(history))
+    {},
+    composeWithDevTools(applyMiddleware(routerMiddleware(history)))
 );
 
 export default class App extends React.Component {
@@ -31,7 +33,11 @@ export default class App extends React.Component {
 
                         <hr />
                         <Switch>
-                            <Redirect exact from="/" to={tasks.constants.MODULE_ROUTE_PATH} />module
+                            <Redirect
+                                exact
+                                from="/"
+                                to={tasks.constants.MODULE_ROUTE_PATH}
+                            />module
                             <Route
                                 path={tasks.constants.MODULE_ROUTE_PATH}
                                 component={tasks.Main}
