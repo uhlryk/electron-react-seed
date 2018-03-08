@@ -5,15 +5,20 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from "react-router-r
 import { composeWithDevTools } from "redux-devtools-extension";
 import createHistory from "history/createMemoryHistory";
 import reducers from "./reducers/index";
+import epics from "./epics/index";
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createEpicMiddleware, combineEpics } from "redux-observable";
+
 
 import * as tasks from "./modules/tasks/index";
+
+const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
 const history = createHistory();
 
 const store = createStore(
     combineReducers(Object.assign(reducers, { routing: routerReducer })),
     {},
-    composeWithDevTools(applyMiddleware(routerMiddleware(history)))
+    composeWithDevTools(applyMiddleware(routerMiddleware(history), epicMiddleware))
 );
 
 export default class App extends React.Component {
