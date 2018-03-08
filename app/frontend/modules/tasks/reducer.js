@@ -2,27 +2,19 @@ import * as actionTypes from "./actionTypes";
 
 /**
  *  state
- *  {
- *      tasks: [{
- *          title: string
- *          id: uuid
- *      }]
- *  }
+ *  [{
+ *     title: string
+ *     id: uuid
+ *  }]
  */
-
-export default (state = { tasks: [] }, action) => {
+const initialState = [];
+export default (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_NEW:
-            return Object.assign({}, state, {
-                tasks: (state.tasks || []).concat([Object.assign({}, action.payload)])
-            });
+            return state.concat([Object.assign({}, action.payload)]);
         case actionTypes.REMOVE:
-            return Object.assign({}, state, {
-                tasks: (state.tasks || []).filter(task => task.id !== action.payload.id)
-            });
+            return state.filter(task => task.id !== action.payload.id);
         default:
-            return Object.assign({}, state, {
-                tasks: (state.tasks || []).slice()
-            });
+            return state.slice();
     }
 };

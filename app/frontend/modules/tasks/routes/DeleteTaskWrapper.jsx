@@ -8,7 +8,7 @@ import { remove } from "../actions";
 export default withRouter(
     connect(
         (state, props) => ({
-            task: state.tasks.tasks.find(task => task.id === props.match.params.taskId)
+            task: state.tasks.find(task => task.id === props.match.params.taskId)
         }),
         dispatch => ({
             onDeleteClick(taskId) {
