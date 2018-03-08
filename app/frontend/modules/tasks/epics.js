@@ -1,12 +1,19 @@
 import { Observable } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 import { push } from "react-router-redux";
-import { ADD_NEW } from "./actionTypes";
+import { START_ADD_NEW } from "./actionTypes";
+import { addNew } from "./actions";
 import { LIST_ROUTE_PATH } from "./constants";
 
-function onAddNew(action$) {
+function startAddNew(action$) {
     return action$
-        .ofType(ADD_NEW)
-        .delay(2000) // simulate async delay for example for server request
-        .switchMap(() => Observable.of(push(LIST_ROUTE_PATH)).delay(2000));
+        .ofType(START_ADD_NEW)
+        .pipe(debounceTime(2000)) // simulate async delay for example for server request
+        .flatMap(({ payload }) =>
+            Observable.concat(
+                Observable.of(addNew(payload.title)),
+                Observable.of(push(LIST_ROUTE_PATH))
+            )
+        );
 }
-export default [onAddNew];
+export default [startAddNew];
