@@ -22,6 +22,8 @@ run prettier and linter before commit.
 * react
 * react-router
 * redux
+* redux-observable
+* rxjs
 * reselect
 * hot module loader
 * sass
