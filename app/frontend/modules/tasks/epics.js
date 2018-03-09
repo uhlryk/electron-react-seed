@@ -8,7 +8,7 @@ import { LIST_ROUTE_PATH } from "./constants";
 function startAddNew(action$) {
     return action$
         .ofType(START_ADD_NEW)
-        .pipe(debounceTime(2000)) // simulate async delay for example for server request
+        .pipe(debounceTime(500)) // simulate async delay for example for server request
         .flatMap(({ payload }) =>
             Observable.concat(
                 Observable.of(addNew(payload.title)),

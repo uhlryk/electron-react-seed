@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
-import ListTasksWrapper from "./routes/ListTasksWrapper";
-import AddTaskWrapper from "./routes/AddTaskWrapper";
-import DeleteTaskWrapper from "./routes/DeleteTaskWrapper";
+import ListTasksView from "./views/ListTasksView";
+import AddTaskView from "./views/AddTaskView";
+import DeleteTaskView from "./views/DeleteTaskView";
 import * as constants from "./constants";
 class Main extends React.Component {
     render() {
@@ -23,12 +23,12 @@ class Main extends React.Component {
                 <Route
                     exact
                     path={constants.LIST_ROUTE_PATH}
-                    component={ListTasksWrapper}
+                    component={ListTasksView}
                 />
-                <Route path={constants.ADD_ROUTE_PATH} component={AddTaskWrapper} />
+                <Route path={constants.ADD_ROUTE_PATH} component={AddTaskView} />
                 <Route
                     path={`${constants.DELETE_ROUTE_PATH}/:taskId`}
-                    component={DeleteTaskWrapper}
+                    component={DeleteTaskView}
                 />
             </div>
         );
