@@ -22,6 +22,7 @@ run prettier and linter before commit.
 * react
 * react-router
 * redux
+* react-notification-system
 * redux-observable
 * rxjs
 * reselect
@@ -83,6 +84,33 @@ If you use global styles you can extend from bootstrap3 classes and from fontAwe
 }
 ```
 Local styles can not extend from above but their advantage is that they are scoped to component.
+
+## Notifications
+https://github.com/gor181/react-notification-system-redux
+
+Use those actions:
+
+import Notifications from 'react-notification-system-redux';
+
+```
+dispatch(Notifications.success(options));
+dispatch(Notifications.error(options));
+dispatch(Notifications.warning(options));
+dispatch(Notifications.info(options));
+```
+where options are:
+```
+{
+  title: 'Hey, it\'s good to see you!',
+  message: 'Now you can see how easy it is to use notifications in React!',
+  position: 'tr',
+  autoDismiss: 0,
+  action: {
+    label: 'Click me!!',
+    callback: () => alert('clicked!')
+  }
+};
+```
 
 ## License 
 

@@ -8,15 +8,16 @@ import reducers from "./reducers/index";
 import epics from "./epics/index";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createEpicMiddleware, combineEpics } from "redux-observable";
-
+import {reducer as notifications} from "react-notification-system-redux";
 
 import * as tasks from "./modules/tasks/index";
+import { Main as NotificationComponent } from "./modules/notifications/index";
 
 const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
 const history = createHistory();
 
 const store = createStore(
-    combineReducers(Object.assign(reducers, { routing: routerReducer })),
+    combineReducers(Object.assign(reducers, { routing: routerReducer }, { notifications })),
     {},
     composeWithDevTools(applyMiddleware(routerMiddleware(history), epicMiddleware))
 );
@@ -48,7 +49,9 @@ export default class App extends React.Component {
                                 component={tasks.Main}
                             />
                         </Switch>
+                        <NotificationComponent />
                     </div>
+
                 </ConnectedRouter>
             </Provider>
         );
