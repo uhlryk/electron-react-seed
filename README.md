@@ -8,9 +8,11 @@ It is a heavily customized version of [https://github.com/chentsulin/electron-re
 
 * **npm run dev** - run development environment with hot module loader
 * **npm run linter** - run linter
+* **npm run test** - run tests
 * **npm run prettier-all** - use prettier on all js files
 * **npm run prettier-changed** - use prettier on changed js files
 * **npm run complexity** run static complexity
+* **npm run build** build whole project
 
 ## Git hooks
 
