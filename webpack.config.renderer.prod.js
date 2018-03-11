@@ -6,24 +6,36 @@ import path from "path";
 import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import merge from "webpack-merge";
-import baseConfig from "./webpack.config.base";
 
-export default merge.smart(baseConfig, {
+export default {
     devtool: "source-map",
 
     target: "electron-renderer",
 
-    entry: "./app/frontend/index",
+    entry: "./src/frontend/index",
 
     output: {
-        path: path.join(__dirname, "app/dist"),
-        publicPath: "./dist/",
-        filename: "renderer.prod.js"
+        path: path.join(__dirname, "dist/frontend"),
+        publicPath: "./dist/frontend",
+        filename: "renderer.prod.js",
+        libraryTarget: "commonjs2"
     },
-
+    resolve: {
+        extensions: [".js", ".jsx", ".json"],
+        modules: [path.join(__dirname, "src"), "node_modules"]
+    },
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            },
             // Extract all .global.css to style.css as is
             {
                 test: /\.global\.css$/,
@@ -167,7 +179,7 @@ export default merge.smart(baseConfig, {
         new webpack.EnvironmentPlugin({
             NODE_ENV: "production"
         }),
-
+        new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin("style.css"),
 
         new BundleAnalyzerPlugin({
@@ -175,4 +187,4 @@ export default merge.smart(baseConfig, {
             openAnalyzer: process.env.OPEN_ANALYZER === "true"
         })
     ]
-});
+};

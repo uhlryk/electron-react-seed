@@ -2,6 +2,5 @@ node_modules
 .eslintcache
 src/main.prod.js
 src/main.prod.js.map
-src/dist
 dist
 npm-debug.log
