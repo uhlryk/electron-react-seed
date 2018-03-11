@@ -1,7 +1,7 @@
 node_modules
 .eslintcache
-app/main.prod.js
-app/main.prod.js.map
-app/dist
+src/main.prod.js
+src/main.prod.js.map
+src/dist
 dist
 npm-debug.log
