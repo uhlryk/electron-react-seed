@@ -2,23 +2,40 @@
  * Webpack config for production electron main process
  */
 
+import path from "path";
 import webpack from "webpack";
-import merge from "webpack-merge";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import baseConfig from "./webpack.config.base";
 
-export default merge.smart(baseConfig, {
+export default {
     devtool: "source-map",
 
     target: "electron-main",
 
-    entry: "./app/main.dev",
+    entry: "./src/main.dev",
 
     output: {
-        path: __dirname,
-        filename: "./app/main.prod.js"
+        path: path.join(__dirname, "dist"),
+        filename: "main.prod.js",
+        libraryTarget: "commonjs2"
     },
-
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            }
+        ]
+    },
+    resolve: {
+        extensions: [".js", ".json"],
+        modules: [path.join(__dirname, "src"), "node_modules"]
+    },
     plugins: [
         new BundleAnalyzerPlugin({
             analyzerMode: process.env.OPEN_ANALYZER === "true" ? "server" : "disabled",
@@ -37,7 +54,8 @@ export default merge.smart(baseConfig, {
         new webpack.EnvironmentPlugin({
             NODE_ENV: "production",
             DEBUG_PROD: "false"
-        })
+        }),
+        new webpack.NamedModulesPlugin()
     ],
 
     /**
@@ -49,4 +67,4 @@ export default merge.smart(baseConfig, {
         __dirname: false,
         __filename: false
     }
-});
+};
