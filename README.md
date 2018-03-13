@@ -7,6 +7,7 @@ It is a heavily customized version of [https://github.com/chentsulin/electron-re
 ## Commands
 
 * **npm run dev** - run development environment with hot module loader
+* **npm run prod** - run production environment (it assumes that build is done. Run **npm run build** first)
 * **npm run linter** - run linter
 * **npm run test** - run tests
 * **npm run prettier-all** - use prettier on all js files

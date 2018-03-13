@@ -17,8 +17,7 @@ export default {
     output: {
         path: path.join(__dirname, "dist/frontend"),
         publicPath: "./dist/frontend",
-        filename: "renderer.prod.js",
-        libraryTarget: "commonjs2"
+        filename: "renderer.prod.js"
     },
     resolve: {
         extensions: [".js", ".jsx", ".json"],

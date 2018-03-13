@@ -4,6 +4,7 @@
 
 import path from "path";
 import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 export default {
@@ -42,20 +43,17 @@ export default {
             openAnalyzer: process.env.OPEN_ANALYZER === "true"
         }),
 
-        /**
-         * Create global constants which can be configured at compile time.
-         *
-         * Useful for allowing different behaviour between development builds and
-         * release builds
-         *
-         * NODE_ENV should be production so that modules do not perform certain
-         * development checks
-         */
         new webpack.EnvironmentPlugin({
             NODE_ENV: "production",
             DEBUG_PROD: "false"
         }),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        new HtmlWebpackPlugin({
+            hash: true,
+            inject: false,
+            template: "src/template.html",
+            filename: "app.html"
+        })
     ],
 
     /**
