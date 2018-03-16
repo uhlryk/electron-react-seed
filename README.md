@@ -14,6 +14,8 @@ It is a heavily customized version of [https://github.com/chentsulin/electron-re
 * **npm run prettier-changed** - use prettier on changed js files
 * **npm run complexity** run static complexity
 * **npm run build** build whole project
+* **npm run package** package app for current environment (it assumes that build is done. Run **npm run build** first)
+* **npm run package-all** package app for all environments (it assumes that build is done. Run **npm run build** first)
 
 ## Git hooks
 

@@ -1,7 +1,6 @@
 {
     "name": "electron-react-seed",
     "productName": "electron-react-seed",
-    "email": "example@example.pl",
     "version": "1.0.0",
     "description": "My Electron react boilerplate",
     "main": "dist/main.prod.js",
@@ -29,7 +28,7 @@
             "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --colors"
     },
     "keywords": [],
-    "author": "krzysztofsztompka",
+    "author": "krzysztofsztompka <sztompka.krzysztof@gmail,com>",
     "license": "MIT",
     "build": {
         "productName": "ElectronReact",
