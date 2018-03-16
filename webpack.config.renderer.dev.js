@@ -1,15 +1,13 @@
 /* eslint global-require: 0, import/no-dynamic-require: 0 */
 import path from "path";
 import webpack from "webpack";
-import merge from "webpack-merge";
-import { spawn, execSync } from "child_process";
+import { spawn } from "child_process";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
-import baseConfig from "./webpack.config.base";
 
 const port = process.env.PORT || 1212;
 const publicPath = `http://localhost:${port}/dist`;
 
-export default merge.smart(baseConfig, {
+export default {
     devtool: "inline-source-map",
 
     target: "electron-renderer",
@@ -18,14 +16,19 @@ export default merge.smart(baseConfig, {
         "react-hot-loader/patch",
         `webpack-dev-server/client?http://localhost:${port}/`,
         "webpack/hot/only-dev-server",
-        path.join(__dirname, "app/frontend/index.js")
+        path.join(__dirname, "src/frontend/index.js")
     ],
 
     output: {
+        path: path.join(__dirname, "src"),
         publicPath: `http://localhost:${port}/dist/`,
-        filename: "renderer.dev.js"
+        filename: "renderer.dev.js",
+        libraryTarget: "commonjs2"
     },
-
+    resolve: {
+        extensions: [".js", ".jsx", ".json"],
+        modules: [path.join(__dirname, "src"), "node_modules"]
+    },
     module: {
         rules: [
             {
@@ -198,6 +201,7 @@ export default merge.smart(baseConfig, {
          * By default, use 'development' as NODE_ENV. This can be overriden with
          * 'staging', for example, by changing the ENV variables in the npm scripts
          */
+        new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
             NODE_ENV: "development"
         }),
@@ -249,4 +253,4 @@ export default merge.smart(baseConfig, {
             }
         }
     }
-});
+};

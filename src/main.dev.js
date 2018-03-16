@@ -6,7 +6,7 @@
  * through IPC.
  *
  * When running `npm run build` or `npm run build-main`, this file is compiled to
- * `./app/main.prod.js` using webpack. This gives us some performance wins.
+ * `./src/main.prod.js` using webpack. This gives us some performance wins.
  *
  * @flow
  */
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 if (process.env.NODE_ENV === "development" || process.env.DEBUG_PROD === "true") {
     require("electron-debug")();
     const path = require("path");
-    const p = path.join(__dirname, "..", "app", "node_modules");
+    const p = path.join(__dirname, "..", "src", "node_modules");
     require("module").globalPaths.push(p);
 }
 
@@ -64,7 +64,7 @@ app.on("ready", async () => {
     //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
     mainWindow.webContents.on("did-finish-load", () => {
         if (!mainWindow) {
-            throw new Error('"mainWindow" is not defined');
+            throw new Error("\"mainWindow\" is not defined");
         }
         mainWindow.show();
         mainWindow.focus();

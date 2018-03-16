@@ -13,7 +13,7 @@
         const port = process.env.PORT || 1212;
         script.src = (process.env.HOT)
             ? 'http://localhost:' + port + '/dist/renderer.dev.js'
-            : './dist/bundle.js';
+            : './dist/renderer.prod.js';
         // HACK: Writing the script path should be done with webpack
         document.body.appendChild(script);
     }
