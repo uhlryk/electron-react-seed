@@ -5,3 +5,4 @@ src/main.prod.js.map
 dist
 release
 npm-debug.log
+coverage
