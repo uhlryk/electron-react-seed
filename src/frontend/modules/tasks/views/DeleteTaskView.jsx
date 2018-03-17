@@ -1,7 +1,8 @@
 import DeleteTask from "../components/DeleteTask";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { LIST_ROUTE_PATH } from "../constants";
+import { translate } from "react-i18next";
+import { LIST_ROUTE_PATH, NAME } from "../constants";
 import { remove } from "../actions";
 
 export default withRouter(
@@ -15,5 +16,5 @@ export default withRouter(
                 props.history.push(LIST_ROUTE_PATH);
             }
         })
-    )(DeleteTask)
+    )(translate(NAME)(DeleteTask))
 );

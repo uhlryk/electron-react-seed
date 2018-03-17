@@ -6,50 +6,51 @@ import reducers from "./reducers/index";
 import epics from "./epics/index";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createEpicMiddleware, combineEpics } from "redux-observable";
-import {reducer as notifications} from "react-notification-system-redux";
-
+import { reducer as notifications } from "react-notification-system-redux";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 import * as tasks from "./modules/tasks/index";
 import { Main as NotificationComponent } from "./modules/notifications/index";
-
 const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
 
 const store = createStore(
     combineReducers(Object.assign(reducers, { notifications })),
     {},
-    composeWithDevTools(applyMiddleware( epicMiddleware))
+    composeWithDevTools(applyMiddleware(epicMiddleware))
 );
 
 export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <MemoryRouter>
-                    <div>
-                        <h2>TODO base app</h2>
-                        <ul>
-                            <li>
-                                <Link to={tasks.constants.MODULE_ROUTE_PATH}>
-                                    {tasks.constants.NAME}
-                                </Link>
-                            </li>
-                        </ul>
+                <I18nextProvider i18n={i18n}>
+                    <MemoryRouter>
+                        <div>
+                            <h2>TODO base app</h2>
+                            <ul>
+                                <li>
+                                    <Link to={tasks.constants.MODULE_ROUTE_PATH}>
+                                        {tasks.constants.NAME}
+                                    </Link>
+                                </li>
+                            </ul>
 
-                        <hr />
-                        <Switch>
-                            <Redirect
-                                exact
-                                from="/"
-                                to={tasks.constants.MODULE_ROUTE_PATH}
-                            />module
-                            <Route
-                                path={tasks.constants.MODULE_ROUTE_PATH}
-                                component={tasks.Main}
-                            />
-                        </Switch>
-                        <NotificationComponent />
-                    </div>
-
-                </MemoryRouter>
+                            <hr />
+                            <Switch>
+                                <Redirect
+                                    exact
+                                    from="/"
+                                    to={tasks.constants.MODULE_ROUTE_PATH}
+                                />module
+                                <Route
+                                    path={tasks.constants.MODULE_ROUTE_PATH}
+                                    component={tasks.Main}
+                                />
+                            </Switch>
+                            <NotificationComponent />
+                        </div>
+                    </MemoryRouter>
+                </I18nextProvider>
             </Provider>
         );
     }

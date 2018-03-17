@@ -22,6 +22,7 @@ class AddTaskForm extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <div>
                 <input
@@ -29,15 +30,14 @@ class AddTaskForm extends React.Component {
                     onChange={this.onChangeTitle}
                     value={this.state.title}
                 />
-                <button className="button button--normal" onClick={this.onAddTask}>
-                    Save
-                </button>
+                <button className="button button--normal" onClick={this.onAddTask}>{t("saveButton")}</button>
             </div>
         );
     }
 }
 
 AddTaskForm.propTypes = {
+    t: PropTypes.func.isRequired,
     onAddTask: PropTypes.func.isRequired
 };
 

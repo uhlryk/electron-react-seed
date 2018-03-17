@@ -13,19 +13,21 @@ class DeleteTask extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <div>
                 <h3>Do you want remove</h3>
                 <div className={classNames(styles.exampleText, "lead")}>
                     {this.props.task.title}
                 </div>
-                <button onClick={this.onDeleteClick}>Delete</button>
+                <button onClick={this.onDeleteClick}>{t("deleteButton")}</button>
             </div>
         );
     }
 }
 
 DeleteTask.propTypes = {
+    t: PropTypes.func.isRequired,
     task: PropTypes.shape({
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired
