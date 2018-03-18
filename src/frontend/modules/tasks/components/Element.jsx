@@ -12,11 +12,12 @@ class Element extends React.Component {
         this.props.onDelete(this.props.id);
     }
     render() {
+        const { t } = this.props;
         return (
             <div>
                 <div>{this.props.title}</div>
                 <div>
-                    <button onClick={this.onDelete}>Remove</button>
+                    <button onClick={this.onDelete}>{t("deleteButton")}</button>
                 </div>
             </div>
         );
@@ -24,6 +25,7 @@ class Element extends React.Component {
 }
 
 Element.propTypes = {
+    t: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired

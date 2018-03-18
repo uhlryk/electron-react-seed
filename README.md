@@ -120,7 +120,7 @@ where options are:
 ### translation
 
 notification message and title are translated.
-Pass :
+As a value use :
 ```
 <namespave>:key.subkey
 ```

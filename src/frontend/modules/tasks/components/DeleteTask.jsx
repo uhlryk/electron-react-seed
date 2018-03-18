@@ -16,7 +16,7 @@ class DeleteTask extends React.Component {
         const { t } = this.props;
         return (
             <div>
-                <h3>Do you want remove</h3>
+                <h3>{t("askForRemove")}</h3>
                 <div className={classNames(styles.exampleText, "lead")}>
                     {this.props.task.title}
                 </div>

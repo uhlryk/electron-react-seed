@@ -1,5 +1,7 @@
 export default {
     en: {
-        general: {}
+        general: {
+            appName: "Todo App"
+        }
     }
 };

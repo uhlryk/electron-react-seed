@@ -26,11 +26,11 @@ export default class App extends React.Component {
                 <I18nextProvider i18n={ translations }>
                     <MemoryRouter>
                         <div>
-                            <h2>TODO base app</h2>
+                            <h2>{translations.t("appName")}</h2>
                             <ul>
                                 <li>
                                     <Link to={tasks.constants.MODULE_ROUTE_PATH}>
-                                        {tasks.constants.NAME}
+                                        {translations.t(tasks.constants.NAME + ":" + tasks.constants.NAME)}
                                     </Link>
                                 </li>
                             </ul>
@@ -41,7 +41,7 @@ export default class App extends React.Component {
                                     exact
                                     from="/"
                                     to={tasks.constants.MODULE_ROUTE_PATH}
-                                />module
+                                />
                                 <Route
                                     path={tasks.constants.MODULE_ROUTE_PATH}
                                     component={tasks.Main}
