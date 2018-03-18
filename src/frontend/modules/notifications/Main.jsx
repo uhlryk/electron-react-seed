@@ -2,28 +2,34 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux";
+import { translate } from "react-i18next";
 
 class Main extends React.Component {
-
     render() {
-        const { notifications } = this.props;
-
-        return (
-            <Notifications
-                notifications={ notifications }
-            />
+        const { notifications, t } = this.props;
+        const translatedNotifications = notifications.map(notification =>
+            Object.assign(
+                {},
+                notification,
+                notification.message && {
+                    message: t(notification.message)
+                },
+                notification.title && {
+                    title: t(notification.title)
+                }
+            )
         );
+        return <Notifications notifications={translatedNotifications} />;
     }
 }
 
-Main.contextTypes = {
-    store: PropTypes.object
-};
+// Main.contextTypes = {
+//     store: PropTypes.object
+// };
 
 Main.propTypes = {
-    notifications: PropTypes.array
+    notifications: PropTypes.array,
+    t: PropTypes.func.isRequired
 };
 
-export default connect(
-    state => ({ notifications: state.notifications })
-)(Main);
+export default connect(state => ({ notifications: state.notifications }))(translate("tasks")(Main));

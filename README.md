@@ -117,6 +117,13 @@ where options are:
   }
 };
 ```
+### translation
+
+notification message and title are translated.
+Pass :
+```
+<namespave>:key.subkey
+```
 
 ## License 
 

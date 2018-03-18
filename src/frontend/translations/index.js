@@ -1,21 +1,21 @@
 import _ from "lodash";
 import i18n from "i18next";
 import { reactI18nextModule } from "react-i18next";
-import { translation } from "./modules/tasks/index";
+import { translation as tasks } from "../modules/tasks/index";
+import general from "./general";
 
 const options = {
     fallbackLng: "en",
 
-    // have a common namespace used around the full app
-    // ns: ["translations"],
-    // defaultNS: "translations",
+    ns: ["general"],
+    defaultNS: "general",
 
     debug: true,
 
     interpolation: {
-        escapeValue: false // not needed for react!!
+        escapeValue: false
     },
-    resources: _.merge(translation),
+    resources: _.merge(general, tasks),
     react: {
         wait: true
     }

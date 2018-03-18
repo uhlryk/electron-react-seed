@@ -3,7 +3,7 @@ import { debounceTime } from "rxjs/operators";
 import { START_ADD_NEW } from "./actionTypes";
 import { addNew } from "./actions";
 import Notifications from "react-notification-system-redux";
-
+import { NAME } from "./constants";
 function startAddNew(action$) {
     return action$
         .ofType(START_ADD_NEW)
@@ -12,7 +12,10 @@ function startAddNew(action$) {
             Observable.concat(
                 Observable.of(addNew(payload.title)),
                 Observable.of(
-                    Notifications.success({ title: "Success", message: "Task added" })
+                    Notifications.success({
+                        title: NAME + ":notification.success.title",
+                        message: NAME + ":notification.success.message"
+                    })
                 )
             )
         );

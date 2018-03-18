@@ -8,7 +8,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createEpicMiddleware, combineEpics } from "redux-observable";
 import { reducer as notifications } from "react-notification-system-redux";
 import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
+import translations from "./translations/index";
 import * as tasks from "./modules/tasks/index";
 import { Main as NotificationComponent } from "./modules/notifications/index";
 const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
@@ -23,7 +23,7 @@ export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <I18nextProvider i18n={i18n}>
+                <I18nextProvider i18n={ translations }>
                     <MemoryRouter>
                         <div>
                             <h2>TODO base app</h2>

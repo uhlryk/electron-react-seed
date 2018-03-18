@@ -1,12 +1,18 @@
-import * as constants from "./constants";
+import { NAME } from "./constants";
 export default {
     en: {
-        [constants.NAME]: {
+        [NAME]: {
             sectionTitle: "Tasks",
             addTaskView: "add task",
             listTaskView: "list tasks",
             deleteButton: "delete",
-            saveButton: "save"
+            saveButton: "save",
+            notification: {
+                success: {
+                    title: "Success",
+                    message: "Task added"
+                }
+            }
         }
     }
 };
