@@ -42,6 +42,9 @@ run prettier and linter before commit.
 ## Related documentation
 * [https://reactjs.org/docs/](https://reactjs.org/docs/)
 * [https://github.com/reactjs/reselect](https://github.com/reactjs/reselect)
+* [https://www.i18next.com/](https://www.i18next.com/)
+* [https://react.i18next.com/](https://react.i18next.com/)
+* [https://www.npmjs.com/package/classnames](https://www.npmjs.com/package/classnames)
 
 ## Project structure
  * app

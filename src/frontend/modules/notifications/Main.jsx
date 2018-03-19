@@ -23,10 +23,6 @@ class Main extends React.Component {
     }
 }
 
-// Main.contextTypes = {
-//     store: PropTypes.object
-// };
-
 Main.propTypes = {
     notifications: PropTypes.array,
     t: PropTypes.func.isRequired

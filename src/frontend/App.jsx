@@ -10,6 +10,7 @@ import { reducer as notifications } from "react-notification-system-redux";
 import { I18nextProvider } from "react-i18next";
 import translations from "./translations/index";
 import * as tasks from "./modules/tasks/index";
+import { Main as LanguageSwitcherComponent } from "./modules/languageSwitcher/index";
 import { Main as NotificationComponent } from "./modules/notifications/index";
 const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
 
@@ -47,6 +48,7 @@ export default class App extends React.Component {
                                     component={tasks.Main}
                                 />
                             </Switch>
+                            <LanguageSwitcherComponent />
                             <NotificationComponent />
                         </div>
                     </MemoryRouter>
