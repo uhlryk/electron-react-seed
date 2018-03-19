@@ -6,6 +6,7 @@ class ListTasks extends React.Component {
     render() {
         const list = this.props.tasks.map(task => (
             <Element
+                t={this.props.t}
                 key={task.id}
                 id={task.id}
                 title={task.title}
@@ -17,6 +18,7 @@ class ListTasks extends React.Component {
 }
 
 ListTasks.propTypes = {
+    t: PropTypes.func.isRequired,
     tasks: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,

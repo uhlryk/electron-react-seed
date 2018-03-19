@@ -39,6 +39,10 @@ run prettier and linter before commit.
 * css modules (sass)
 * internationalization (i18next)
 
+## Related documentation
+* [https://reactjs.org/docs/](https://reactjs.org/docs/)
+* [https://github.com/reactjs/reselect](https://github.com/reactjs/reselect)
+
 ## Project structure
  * app
    * frontend - frontend app used in electron renderer process

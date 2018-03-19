@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { LIST_ROUTE_PATH, NAME } from "../constants";
 import { remove } from "../actions";
+import { findTask } from "../selectors";
 
 export default withRouter(
     connect(
         (state, props) => ({
-            task: state.tasks.find(task => task.id === props.match.params.taskId)
+            task: findTask(state, props)
         }),
         (dispatch, props) => ({
             onDeleteClick(taskId) {
