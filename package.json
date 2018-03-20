@@ -3,12 +3,12 @@
   "productName": "electron-react-seed",
   "version": "1.0.0",
   "description": "My Electron react boilerplate",
-  "main": "dist/main.prod.js",
+  "main": "dist/desktop/main.prod.js",
   "scripts": {
     "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
-    "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./src/main.dev",
+    "start-main-dev": "cross-env HOT=1 NODE_ENV=development electron -r babel-register ./src/desktop/main.dev",
     "start-renderer-dev": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
-    "prod": "electron -r babel-register ./dist/main.prod",
+    "prod": "electron -r babel-register ./dist/desktop/main.prod",
     "linter": "eslint --cache --color --ext .jsx,.js src",
     "prettier-all": "prettier --config .prettierrc --write 'src/**/*.jsx' --write 'src/**/*.js'",
     "prettier-changed": "git diff --name-only --diff-filter=ACMRTU HEAD | grep -e \".*\\.jsx$\" -e \".*\\.js$\" | xargs prettier --config .prettierrc --write",
@@ -44,7 +44,7 @@
   "license": "MIT",
   "build": {
     "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "appId": "com.example",
     "files": [
       "dist/",
       "node_modules/",

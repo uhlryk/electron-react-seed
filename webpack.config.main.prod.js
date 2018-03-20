@@ -12,10 +12,10 @@ export default {
 
     target: "electron-main",
 
-    entry: "./src/main.dev",
+    entry: "./src/desktop/main.dev",
 
     output: {
-        path: path.join(__dirname, "dist"),
+        path: path.join(__dirname, "dist/desktop"),
         filename: "main.prod.js",
         libraryTarget: "commonjs2"
     },
@@ -35,7 +35,7 @@ export default {
     },
     resolve: {
         extensions: [".js", ".json"],
-        modules: [path.join(__dirname, "src"), "node_modules"]
+        modules: [path.join(__dirname, "src/desktop"), "node_modules"]
     },
     plugins: [
         new BundleAnalyzerPlugin({
@@ -51,7 +51,7 @@ export default {
         new HtmlWebpackPlugin({
             hash: true,
             inject: false,
-            template: "src/template.html",
+            template: "src/desktop/template.html",
             filename: "app.html"
         })
     ],
