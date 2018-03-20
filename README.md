@@ -39,20 +39,36 @@ run prettier and linter before commit.
 * css modules (sass)
 * internationalization (i18next)
 
-## Related documentation
+## Related documentations
+* [https://electronjs.org/docs](https://electronjs.org/docs)
 * [https://reactjs.org/docs/](https://reactjs.org/docs/)
+* [https://redux.js.org/](https://redux.js.org/)
+* [https://github.com/reactjs/react-redux/](https://github.com/reactjs/react-redux/tree/master/docs)
+* [https://reacttraining.com/react-router/](https://reacttraining.com/react-router/web/guides/philosophy)
+* [https://redux-observable.js.org/](https://redux-observable.js.org/)
 * [https://github.com/reactjs/reselect](https://github.com/reactjs/reselect)
+* [https://github.com/igorprado/react-notification-system](https://github.com/igorprado/react-notification-system)
+* [https://github.com/gor181/react-notification-system-redux](https://github.com/gor181/react-notification-system-redux)  
 * [https://www.i18next.com/](https://www.i18next.com/)
 * [https://react.i18next.com/](https://react.i18next.com/)
+* [http://reactivex.io/rxjs/manual/index.html](http://reactivex.io/rxjs/manual/index.html)
+* [https://lodash.com/docs/](https://lodash.com/docs/4.17.5)
 * [https://www.npmjs.com/package/classnames](https://www.npmjs.com/package/classnames)
+* [http://getbootstrap.com/docs/3.3/](http://getbootstrap.com/docs/3.3/)
+* [https://fontawesome.com/how-to-use/svg-with-js](https://fontawesome.com/how-to-use/svg-with-js)
+* [https://sass-lang.com/documentation/file.SASS_REFERENCE.html](https://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+* [http://compass-style.org/examples/](http://compass-style.org/examples/)
 
 ## Project structure
  * app
    * frontend - frontend app used in electron renderer process
      * components - should contain all sharable react components
      * modules - each module should be in named folder. It contain example component called *tasks*
-     * reducers  - directory for global reducers
+     * reducers - directory for global reducers
        * index.js - root reducer
+     * translations - directory for translations
+       * index.js - i18next configuration
+       * general.js - global translations
      * styles - directory for global styles
        * index.global.scss - root global style
        * _variables.scss - place for overriding bootstrap variables
@@ -79,6 +95,7 @@ This is just suggested module structure
    * selectors.js - module reselect selectors
    * Main.jsx - root module react component
    * styles.scss - css module
+   * translation.js - module translations
 
 ## Styles
 
