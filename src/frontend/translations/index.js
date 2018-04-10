@@ -1,7 +1,5 @@
-import _ from "lodash";
 import i18n from "i18next";
 import { reactI18nextModule } from "react-i18next";
-import { translation as tasks } from "../modules/tasks/index";
 import general from "./general";
 
 const options = {
@@ -15,7 +13,7 @@ const options = {
     interpolation: {
         escapeValue: false
     },
-    resources: _.merge(general, tasks),
+    resources: general,
     react: {
         wait: true
     }

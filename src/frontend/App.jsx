@@ -1,8 +1,8 @@
 import React from "react";
-import { MemoryRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import { MemoryRouter, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import * as extensioner from "extensioner";
+import { Manager } from "extensioner";
 import { ExtensionerProvider, ExtensionerEvent } from "react-extensioner";
 import reducers from "./reducers/index";
 import epics from "./epics/index";
@@ -11,18 +11,27 @@ import { createEpicMiddleware, combineEpics } from "redux-observable";
 import { reducer as notifications } from "react-notification-system-redux";
 import { I18nextProvider } from "react-i18next";
 import translations from "./translations/index";
-import * as tasks from "./modules/tasks/index";
-import { Main as LanguageSwitcherComponent } from "./modules/languageSwitcher/index";
-import { Main as NotificationComponent } from "./modules/notifications/index";
-const epicMiddleware = createEpicMiddleware(combineEpics(...epics));
+
+import tasksExtension from "./modules/tasks/index";
+import languageSwitcherExtension from "./modules/languageSwitcher/index";
+import notificationExtension from "./modules/notifications/index";
+
+const manager = new Manager();
+manager.registerExtension("tasks", tasksExtension());
+manager.registerExtension("languageSwitcher", languageSwitcherExtension());
+manager.registerExtension("notifications", notificationExtension());
+
+const epicMiddleware = createEpicMiddleware(
+    combineEpics(...epics, ...[].concat(...Object.values(manager.getPropertyValues("epics"))))
+);
 const store = createStore(
-    combineReducers(Object.assign(reducers, { notifications })),
+    combineReducers(
+        Object.assign(reducers, { notifications }, manager.getPropertyValues("reducer"))
+    ),
     {},
     composeWithDevTools(applyMiddleware(epicMiddleware))
 );
-
-const manager = new extensioner.Manager();
-
+// translations.addResource()
 export default class App extends React.Component {
     render() {
         return (
@@ -33,31 +42,17 @@ export default class App extends React.Component {
                             <div>
                                 <h2>{translations.t("appName")}</h2>
                                 <ul>
-                                    <li>
-                                        <Link to={tasks.constants.MODULE_ROUTE_PATH}>
-                                            {translations.t(
-                                                tasks.constants.NAME +
-                                                    ":" +
-                                                    tasks.constants.NAME
-                                            )}
-                                        </Link>
-                                    </li>
+                                    <ExtensionerEvent
+                                        name={"onRenderMenuLink"}
+                                        value={translations}
+                                    />
                                 </ul>
-                                <ExtensionerEvent name={"test"} value={"test"} />
+
                                 <hr />
                                 <Switch>
-                                    <Redirect
-                                        exact
-                                        from="/"
-                                        to={tasks.constants.MODULE_ROUTE_PATH}
-                                    />
-                                    <Route
-                                        path={tasks.constants.MODULE_ROUTE_PATH}
-                                        component={tasks.Main}
-                                    />
+                                    <ExtensionerEvent name={"onRenderRoute"} />
                                 </Switch>
-                                <LanguageSwitcherComponent />
-                                <NotificationComponent />
+                                <ExtensionerEvent name={"onRenderRootComponent"} />
                             </div>
                         </MemoryRouter>
                     </I18nextProvider>

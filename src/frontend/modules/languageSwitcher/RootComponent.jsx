@@ -4,7 +4,7 @@ import { translate } from "react-i18next";
 import classNames from "classnames";
 import styles from "./styles.scss";
 
-class Main extends React.Component {
+class RootComponent extends React.Component {
     render() {
         const { i18n, t } = this.props;
         return (
@@ -34,9 +34,9 @@ class Main extends React.Component {
     }
 }
 
-Main.propTypes = {
+RootComponent.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired
 };
 
-export default translate("general")(Main);
+export default translate("general")(RootComponent);

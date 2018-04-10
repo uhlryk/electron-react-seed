@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux";
 import { translate } from "react-i18next";
 
-class Main extends React.Component {
+class RootComponent extends React.Component {
     render() {
         const { notifications, t } = this.props;
         const translatedNotifications = notifications.map(notification =>
@@ -23,9 +23,9 @@ class Main extends React.Component {
     }
 }
 
-Main.propTypes = {
+RootComponent.propTypes = {
     notifications: PropTypes.array,
     t: PropTypes.func.isRequired
 };
 
-export default connect(state => ({ notifications: state.notifications }))(translate("tasks")(Main));
+export default connect(state => ({ notifications: state.notifications }))(translate("tasks")(RootComponent));
