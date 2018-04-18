@@ -12,18 +12,19 @@ export default function() {
         properties: {
             reducer: reducer,
             epics: epics,
-            translation: translation
+            translation: translation,
+            initRedirect: constants.LIST_ROUTE_PATH
         },
         events: {
             onRenderMenuLink: translations => (
                 <li>
-                    <Link to={constants.MODULE_ROUTE_PATH}>
+                    <Link to={constants.LIST_ROUTE_PATH}>
                         {translations.t(constants.NAME + ":" + constants.NAME)}
                     </Link>
                 </li>
             ),
             onRenderRoute: () => (
-                <Route path={constants.MODULE_ROUTE_PATH} component={Main} />
+                <Route path={constants.MODULE_ROUTE_PATH } component={Main} />
             )
         }
     };

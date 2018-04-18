@@ -31,6 +31,16 @@ const store = createStore(
     {},
     composeWithDevTools(applyMiddleware(epicMiddleware))
 );
+
+const initRedirectList = Object.values(manager.getPropertyValues("initRedirect"));
+const initRedirect = initRedirectList[0];
+let memoryRouterOptions = {};
+if(initRedirect) {
+    memoryRouterOptions = {
+        initialEntries: [ initRedirect ],
+        initialIndex: 1
+    };
+}
 // translations.addResource()
 export default class App extends React.Component {
     render() {
@@ -38,7 +48,7 @@ export default class App extends React.Component {
             <ExtensionerProvider manager={manager}>
                 <Provider store={store}>
                     <I18nextProvider i18n={translations}>
-                        <MemoryRouter>
+                        <MemoryRouter { ...memoryRouterOptions } >
                             <div>
                                 <h2>{translations.t("appName")}</h2>
                                 <ul>
