@@ -41,7 +41,14 @@ if(initRedirect) {
         initialIndex: 1
     };
 }
-// translations.addResource()
+const translationResources = manager.getPropertyValues("translation");
+Object.values(translationResources).forEach((langResource) => {
+    Object.entries(langResource).forEach(([lang, namespaceResource]) => {
+        Object.entries(namespaceResource).forEach(([namespace, resource]) => {
+            translations.addResources(lang, namespace, resource);
+        });
+    });
+});
 export default class App extends React.Component {
     render() {
         return (

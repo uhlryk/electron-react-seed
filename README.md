@@ -63,7 +63,7 @@ run prettier and linter before commit.
  * app
    * frontend - frontend app used in electron renderer process
      * components - should contain all sharable react components
-     * modules - each module should be in named folder. It contain example component called *tasks*
+     * modules - each module should be in named folder. It contains example component called *tasks*
      * reducers - directory for global reducers
        * index.js - root reducer
      * translations - directory for translations
