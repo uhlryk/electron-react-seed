@@ -4,10 +4,10 @@ import languageSwitcherExtension from "./languageSwitcher/frontend";
 import tasksExtension from "./tasks/frontend";
 
 export default () => {
-    const manager = new Manager();
-    manager.registerExtension("tasks", tasksExtension());
-    manager.registerExtension("languageSwitcher", languageSwitcherExtension());
-    manager.registerExtension("notifications", notificationExtension());
+    const extensionManager = new Manager();
+    extensionManager.registerExtension("tasks", tasksExtension());
+    extensionManager.registerExtension("languageSwitcher", languageSwitcherExtension());
+    extensionManager.registerExtension("notifications", notificationExtension());
 
-    return manager;
+    return extensionManager;
 };

@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import Element from "./Element";
 import PropTypes from "prop-types";
-
+import mainProcessEvent from "../../../../frontend/helpers/mainProcessEvent";
 class ListTasks extends React.Component {
+
     render() {
+        mainProcessEvent("onLogBackend", "render List tasks");
         const list = this.props.tasks.map(task => (
             <Element
                 t={this.props.t}

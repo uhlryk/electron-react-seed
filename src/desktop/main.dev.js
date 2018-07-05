@@ -12,6 +12,9 @@
  */
 import { app, BrowserWindow, ipcMain } from "electron";
 
+import managerCreator from "../modules/desktop";
+const extensionManager = managerCreator();
+
 let mainWindow = null;
 if (process.env.NODE_ENV === "production") {
     const sourceMapSupport = require("source-map-support");
@@ -74,8 +77,9 @@ app.on("ready", async () => {
         mainWindow = null;
     });
 
-    ipcMain.on("requestMainProcess", async (evt, promisifiedCallback) => {
-        const requestResult = await promisifiedCallback(BrowserWindow);
-        evt.sender.send("responseMainProcess", requestResult);
+    ipcMain.on("onCallExensionerEvent", async (evt, extensionEventName, requestData) => {
+        const event = extensionManager.createEvent(extensionEventName);
+        const requestResult = await event(requestData);
+        evt.sender.send("onExensionerEventResponse", requestResult);
     });
 });

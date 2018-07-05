@@ -13,21 +13,21 @@ import { I18nextProvider } from "react-i18next";
 import translations from "./translations/index";
 
 import managerCreator from "../modules/frontend";
-const manager = managerCreator();
+const extensionManager = managerCreator();
 
 
 const epicMiddleware = createEpicMiddleware(
-    combineEpics(...epics, ...[].concat(...Object.values(manager.getPropertyValues("epics"))))
+    combineEpics(...epics, ...[].concat(...Object.values(extensionManager.getPropertyValues("epics"))))
 );
 const store = createStore(
     combineReducers(
-        Object.assign(reducers, { notifications }, manager.getPropertyValues("reducer"))
+        Object.assign(reducers, { notifications }, extensionManager.getPropertyValues("reducer"))
     ),
     {},
     composeWithDevTools(applyMiddleware(epicMiddleware))
 );
 
-const initRedirectList = Object.values(manager.getPropertyValues("initRedirect"));
+const initRedirectList = Object.values(extensionManager.getPropertyValues("initRedirect"));
 const initRedirect = initRedirectList[0];
 let memoryRouterOptions = {};
 if(initRedirect) {
@@ -36,7 +36,7 @@ if(initRedirect) {
         initialIndex: 1
     };
 }
-const translationResources = manager.getPropertyValues("translation");
+const translationResources = extensionManager.getPropertyValues("translation");
 Object.values(translationResources).forEach((langResource) => {
     Object.entries(langResource).forEach(([lang, namespaceResource]) => {
         Object.entries(namespaceResource).forEach(([namespace, resource]) => {
@@ -47,7 +47,7 @@ Object.values(translationResources).forEach((langResource) => {
 export default class App extends React.Component {
     render() {
         return (
-            <ExtensionerProvider manager={manager}>
+            <ExtensionerProvider manager={extensionManager}>
                 <Provider store={store}>
                     <I18nextProvider i18n={translations}>
                         <MemoryRouter { ...memoryRouterOptions } >
