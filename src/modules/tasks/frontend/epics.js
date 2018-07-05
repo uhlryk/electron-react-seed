@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { debounceTime } from "rxjs/operators";
-import { START_ADD_NEW } from "./actionTypes";
+import { START_ADD_NEW } from "./epicActionTypes";
 import { addNew } from "./actions";
 import Notifications from "react-notification-system-redux";
 import { NAME } from "./constants";
