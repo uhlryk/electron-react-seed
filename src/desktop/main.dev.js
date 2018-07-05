@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 
 let mainWindow = null;
 if (process.env.NODE_ENV === "production") {
@@ -64,7 +64,7 @@ app.on("ready", async () => {
     //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
     mainWindow.webContents.on("did-finish-load", () => {
         if (!mainWindow) {
-            throw new Error("\"mainWindow\" is not defined");
+            throw new Error("'mainWindow' is not defined");
         }
         mainWindow.show();
         mainWindow.focus();
@@ -72,5 +72,10 @@ app.on("ready", async () => {
 
     mainWindow.on("closed", () => {
         mainWindow = null;
+    });
+
+    ipcMain.on("requestMainProcess", async (evt, promisifiedCallback) => {
+        const requestResult = await promisifiedCallback(BrowserWindow);
+        evt.sender.send("responseMainProcess", requestResult);
     });
 });
