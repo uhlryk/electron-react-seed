@@ -10,8 +10,8 @@
  *
  * @flow
  */
-import { app, BrowserWindow, ipcMain } from "electron";
-
+import { app, BrowserWindow } from "electron";
+import { handleEvent } from "electron-extensioner";
 import managerCreator from "../modules/desktop";
 const extensionManager = managerCreator();
 
@@ -77,9 +77,5 @@ app.on("ready", async () => {
         mainWindow = null;
     });
 
-    ipcMain.on("onCallExensionerEvent", async (evt, extensionEventName, requestData) => {
-        const event = extensionManager.createEvent(extensionEventName);
-        const requestResult = await event(requestData);
-        evt.sender.send("onExensionerEventResponse", requestResult);
-    });
+    handleEvent(extensionManager);
 });

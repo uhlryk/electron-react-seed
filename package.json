@@ -89,6 +89,7 @@
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
     "electron-debug": "^1.5.0",
+    "electron-extensioner": "^1.0.3",
     "extensioner": "^1.18.3",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
